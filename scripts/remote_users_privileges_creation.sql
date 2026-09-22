@@ -1,8 +1,9 @@
 /* Creasion de usuarios remotos */
-CREATE USER IF NOT EXISTS 'marco.ramirez'@'%' IDENTIFIED BY 'qwerty123';
+CREATE USER IF NOT EXISTS 'marco.ramirez'@'%' IDENTIFIED BY '1234';
 CREATE USER IF NOT EXISTS 'obed.vargas'@'%' IDENTIFIED BY '240145';
 CREATE USER IF NOT EXISTS 'osmar.ortega'@'%' IDENTIFIED BY '240036';
 CREATE USER IF NOT EXISTS 'yaneth.garrido'@'%' IDENTIFIED BY '240629';
+CREATE USER IF NOT EXISTS 'dorian.barrios'@'%' IDENTIFIED BY '240065';
 
 /* Asignar los privilegios de super usuario */
 GRANT ALL PRIVILEGES ON *.* TO 'obed.vargas'@'%';
@@ -44,11 +45,23 @@ TO 'seller';
 grant 'superadmin' TO 'obed.vargas'@'%';
 /*este es el profe marco*/
 GRANT 'admin' TO 'marco.ramirez'@'%';
+GRANT 'seller' TO 'marco.ramirez'@'%';
 /*este es el de la izquierda*/
 GRANT 'support' TO 'yaneth.garrido'@'%';
 /*este es el de la derecha*/
 GRANT 'seller' TO 'osmar.ortega'@'%';
+/*la otra persona que seleccioné*/
+GRANT 'seller' TO 'dorian.barrios'@'%';
 
+SET DEFAULT ROLE 'superadmin' TO 'obed.vargas'@'%';
+SET DEFAULT ROLE 'admin' TO 'marco.ramirez'@'%';
+SET DEFAULT ROLE 'support' TO 'yaneth.garrido'@'%';
+SET DEFAULT ROLE 'seller' TO 'osmar.ortega'@'%';
+SET DEFAULT ROLE 'seller' TO 'marco.ramirez'@'%';
+
+
+/*mostrar usuarios remotos creados*/
+SELECT "se crearon los usuarios remotos" AS mensaje;
 
 /* Aplicar cambios */
 FLUSH PRIVILEGES;

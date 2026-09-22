@@ -1,5 +1,32 @@
 USE db_test_7b;
 
+SELECT 
+    u.nick,
+    u.email,
+    b.db_users AS inserted_by,
+    GROUP_CONCAT(
+        DISTINCT re.FROM_USER 
+        ORDER BY re.FROM_USER 
+        SEPARATOR ', '
+    ) AS roles,
+    b.table_description,
+    b.operation_date
+FROM tb_users u
+JOIN tb_logs b
+    ON b.table_description LIKE CONCAT('%', u.nick, '%')
+   AND b.table_description LIKE CONCAT('%', u.email, '%')
+LEFT JOIN mysql.role_edges re
+    ON re.TO_USER = SUBSTRING_INDEX(b.db_users, '@', 1)
+WHERE b.table_operation = 'Create'
+  AND b.table_name = 'tb_users'
+GROUP BY
+    u.nick,
+    u.email,
+    b.db_users,
+    b.table_description,
+    b.operation_date
+ORDER BY b.operation_date ASC;
+
 /*1. Cuantas tablas existen en la base de datos db_test_7b?*/
 SHOW TABLES;
 /*2. Cuantos triggers existen en la base de datos db_test_7b?*/
@@ -24,6 +51,44 @@ SELECT user, host from mysql.user where host='%' AND account_locked = 'Y';
 SELECT TO_USER AS usuario, TO_HOST AS host, FROM_USER AS rol, FROM_HOST AS rol_host
 FROM mysql.role_edges ORDER BY TO_USER, FROM_USER;
 
---9. verificar el total de los procedimientos almacenados que esten en la base de datos db_test_7b
+/*9. verificar el total de los procedimientos almacenados que esten en la base de datos db_test_7b*/
 SHOW PROCEDURE STATUS WHERE Db = 'db_test_7b';
 
+/*10. verificacion de los productos*/
+/*contanbilizar los productos*/
+    SELECT COUNT(*) FROM tb_products;
+
+/* visualizar todos los prodcut0os */
+    SELECT * FROM tb_products;
+
+/* consulta para saber la trazabilidad de los productos */
+SELECT 
+    p.id,
+    p.name,
+    p.description,
+    b.db_users AS inserted_by,
+    COALESCE(
+        GROUP_CONCAT(
+            DISTINCT re.FROM_USER 
+            ORDER BY re.FROM_USER 
+            SEPARATOR ', '
+        ),
+        'Sin rol'
+    ) AS roles,
+    b.table_description,
+    b.operation_date
+FROM tb_products p
+JOIN tb_logs b 
+    ON b.table_description LIKE CONCAT('%ID=', p.id, '%')
+LEFT JOIN mysql.role_edges re
+    ON re.TO_USER = SUBSTRING_INDEX(b.db_users, '@', 1)
+WHERE b.table_operation = 'Create'
+  AND b.table_name = 'tb_products'
+GROUP BY
+    p.id,
+    p.name,
+    p.description,
+    b.db_users,
+    b.table_description,
+    b.operation_date
+ORDER BY b.operation_date ASC;
