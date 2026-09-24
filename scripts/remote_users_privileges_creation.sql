@@ -3,7 +3,6 @@ CREATE USER IF NOT EXISTS 'marco.ramirez'@'%' IDENTIFIED BY '1234';
 CREATE USER IF NOT EXISTS 'obed.vargas'@'%' IDENTIFIED BY '240145';
 CREATE USER IF NOT EXISTS 'osmar.ortega'@'%' IDENTIFIED BY '240036';
 CREATE USER IF NOT EXISTS 'yaneth.garrido'@'%' IDENTIFIED BY '240629';
-CREATE USER IF NOT EXISTS 'dorian.barrios'@'%' IDENTIFIED BY '240065';
 
 /* Asignar los privilegios de super usuario */
 GRANT ALL PRIVILEGES ON *.* TO 'obed.vargas'@'%';
@@ -50,8 +49,7 @@ GRANT 'seller' TO 'marco.ramirez'@'%';
 GRANT 'support' TO 'yaneth.garrido'@'%';
 /*este es el de la derecha*/
 GRANT 'seller' TO 'osmar.ortega'@'%';
-/*la otra persona que seleccioné*/
-GRANT 'seller' TO 'dorian.barrios'@'%';
+
 
 SET DEFAULT ROLE 'superadmin' TO 'obed.vargas'@'%';
 SET DEFAULT ROLE 'admin' TO 'marco.ramirez'@'%';
