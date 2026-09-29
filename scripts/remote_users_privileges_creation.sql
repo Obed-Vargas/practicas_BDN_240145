@@ -1,13 +1,19 @@
-/* Creasion de usuarios remotos */
+/* Creacion de usuarios remotos */
 CREATE USER IF NOT EXISTS 'marco.ramirez'@'%' IDENTIFIED BY '1234';
 CREATE USER IF NOT EXISTS 'obed.vargas'@'%' IDENTIFIED BY '240145';
 CREATE USER IF NOT EXISTS 'osmar.ortega'@'%' IDENTIFIED BY '240036';
 CREATE USER IF NOT EXISTS 'yaneth.garrido'@'%' IDENTIFIED BY '240629';
 
-/* Asignar los privilegios de super usuario */
-GRANT ALL PRIVILEGES ON *.* TO 'obed.vargas'@'%';
+/* Permitir la carga de archivos locales desde el servidor */
+SET GLOBAL local_infile = 1;
 
-/* Asignar los privilegios de SELECCION, INCERSION, ACTUALIZACION Y ELIMINACION */
+/* Permisos globales FILE (necesarios para LOAD DATA INFILE) */
+GRANT FILE ON *.* TO 'marco.ramirez'@'%';
+GRANT FILE ON *.* TO 'osmar.ortega'@'%';
+GRANT FILE ON *.* TO 'yaneth.garrido'@'%';
+
+/* Asignar privilegios directos */
+GRANT ALL PRIVILEGES ON *.* TO 'obed.vargas'@'%';
 GRANT SELECT, INSERT, UPDATE, DELETE ON db_test_7b.* TO 'yaneth.garrido'@'%';
 
 /* CREACION DE ROLES PARA EL SISTEMA DE ECOMMERCE */
@@ -21,45 +27,32 @@ CREATE ROLE IF NOT EXISTS 'user_not_registered';
 
 /* ASIGNAR PRIVILEGIOS A LOS ROLES CREADOS */
 GRANT ALL PRIVILEGES ON *.* TO 'superadmin';
-
 GRANT ALL PRIVILEGES ON db_test_7b.* TO 'admin';
 
 -- SUPPORT
-GRANT SELECT, INSERT, UPDATE 
-ON db_test_7b.tb_users
-TO 'support';
+GRANT SELECT, INSERT, UPDATE ON db_test_7b.tb_users TO 'support';
+GRANT SELECT, INSERT, UPDATE ON db_test_7b.tb_products TO 'support';
 
-GRANT SELECT, INSERT, UPDATE 
-ON db_test_7b.tb_products
-TO 'support';
-
-/*seller*/
-GRANT SELECT, INSERT, UPDATE, DELETE 
-ON db_test_7b.tb_products 
-TO 'seller';
+-- SELLER
+GRANT SELECT, INSERT, UPDATE, DELETE ON db_test_7b.tb_products TO 'seller';
 
 /* ASIGNAR ROLES A LOS USUARIOS CREADOS */
+GRANT 'superadmin' TO 'obed.vargas'@'%';
 
-/*este soy yo*/
-grant 'superadmin' TO 'obed.vargas'@'%';
-/*este es el profe marco*/
-GRANT 'admin' TO 'marco.ramirez'@'%';
+/* Marco Ramirez recibe rol de seller y admin */
 GRANT 'seller' TO 'marco.ramirez'@'%';
-/*este es el de la izquierda*/
+GRANT 'admin' TO 'marco.ramirez'@'%';
+
 GRANT 'support' TO 'yaneth.garrido'@'%';
-/*este es el de la derecha*/
 GRANT 'seller' TO 'osmar.ortega'@'%';
 
-
-SET DEFAULT ROLE 'superadmin' TO 'obed.vargas'@'%';
-SET DEFAULT ROLE 'admin' TO 'marco.ramirez'@'%';
-SET DEFAULT ROLE 'support' TO 'yaneth.garrido'@'%';
-SET DEFAULT ROLE 'seller' TO 'osmar.ortega'@'%';
-SET DEFAULT ROLE 'seller' TO 'marco.ramirez'@'%';
-
-
-/*mostrar usuarios remotos creados*/
-SELECT "se crearon los usuarios remotos" AS mensaje;
+/* ESTABLECER ROLES POR DEFECTO (USAR 'ALL' PARA QUE SE ACTIVEN TODOS LOS ROLES DEL USUARIO) */
+SET DEFAULT ROLE ALL TO 'obed.vargas'@'%';
+SET DEFAULT ROLE ALL TO 'marco.ramirez'@'%';
+SET DEFAULT ROLE ALL TO 'yaneth.garrido'@'%';
+SET DEFAULT ROLE ALL TO 'osmar.ortega'@'%';
 
 /* Aplicar cambios */
 FLUSH PRIVILEGES;
+
+SELECT "Usuarios remotos y roles creados correctamente" AS mensaje;
