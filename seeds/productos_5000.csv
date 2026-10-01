@@ -1,4 +1,4 @@
-ID,SKU,name,description,current_price,current_stock,status,creation_date,last_update
+ID,SKU,name,description,current_price,current_stock,status,creation_date,last_update 
 18,DIS-0101,Disco SSD NVMe HP Model-2,Unidad de estado sólido M.2 alta velocidad marca HP,3774.18,80,1,2026-09-24 11:48:34,2026-10-01 09:44:34
 19,MIC-0102,Micrófono Condensador Samsung Model-3,Micrófono USB para streaming y podcast marca Samsung,3484.42,9,1,2026-09-24 11:48:36,2026-10-01 09:44:34
 20,SMA-0103,Smartwatch Sony Model-4,Reloj inteligente con monitor de pulso y GPS marca Sony,1273.08,98,1,2026-09-24 11:48:38,2026-10-01 09:44:34
