@@ -92,3 +92,17 @@ GROUP BY
     b.table_description,
     b.operation_date
 ORDER BY b.operation_date ASC;
+
+/* 11. Contabilizar los productos */
+SELECT COUNT(*) FROM tb_products;
+
+/* 12. Consulta para saber la trazabilidad de los productos */
+select * from vw_trazabilidad_productos ORDER BY operation_date desc limit 10;
+
+/* 13. Consulta la trazabilidad de usuarios */
+select * from vw_trazabilidad_usuarios ORDER BY operation_date asc;
+
+/* 14. Contabilizar cuantos productos por tabla hay por usuario */
+SELECT COUNT(*), vp.inserted_by
+FROM vw_trazabilidad_productos vp
+GROUP BY vp.inserted_by;
