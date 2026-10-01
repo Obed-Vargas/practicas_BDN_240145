@@ -3,6 +3,7 @@ CREATE USER IF NOT EXISTS 'marco.ramirez'@'%' IDENTIFIED BY '1234';
 CREATE USER IF NOT EXISTS 'obed.vargas'@'%' IDENTIFIED BY '240145';
 CREATE USER IF NOT EXISTS 'osmar.ortega'@'%' IDENTIFIED BY '240036';
 CREATE USER IF NOT EXISTS 'yaneth.garrido'@'%' IDENTIFIED BY '240629';
+CREATE USER IF NOT EXISTS 'jorge.eloy'@'%' IDENTIFIED BY '240456';
 
 /* Permitir la carga de archivos locales desde el servidor */
 SET GLOBAL local_infile = 1;
@@ -11,6 +12,7 @@ SET GLOBAL local_infile = 1;
 GRANT FILE ON *.* TO 'marco.ramirez'@'%';
 GRANT FILE ON *.* TO 'osmar.ortega'@'%';
 GRANT FILE ON *.* TO 'yaneth.garrido'@'%';
+GRANT FILE ON *.* TO 'jorge.eloy'@'%';
 
 /* Asignar privilegios directos */
 GRANT ALL PRIVILEGES ON *.* TO 'obed.vargas'@'%';
@@ -28,6 +30,10 @@ CREATE ROLE IF NOT EXISTS 'user_not_registered';
 /* ASIGNAR PRIVILEGIOS A LOS ROLES CREADOS */
 GRANT ALL PRIVILEGES ON *.* TO 'superadmin';
 GRANT ALL PRIVILEGES ON db_test_7b.* TO 'admin';
+
+/*Asignar privilegios a un usuario sin rol, no es una buena practicam,
+pero es bueno saber que se puede realizar  y no obligatoriamente ligado con el rol*/
+GRANT SELECT, INSERT, UPDATE, DELETE ON db_test_7b.tb_users TO 'jorge.eloy'@'%';
 
 -- SUPPORT
 GRANT SELECT, INSERT, UPDATE ON db_test_7b.tb_users TO 'support';
