@@ -5,7 +5,7 @@
 CREATE USER IF NOT EXISTS 'marco.ramirez'@'%'
 IDENTIFIED BY 'qwerty123';
 
-CREATE USER IF NOT EXISTS 'obed.vargas'@'%'
+CREATE USER IF NOT EXISTS 'obed.vargas'@'%' 
 IDENTIFIED BY '240145';
 
 CREATE USER IF NOT EXISTS 'osmar.ortega'@'%'
