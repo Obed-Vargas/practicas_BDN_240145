@@ -3,7 +3,7 @@
    ============================================================ */
 
 CREATE USER IF NOT EXISTS 'marco.ramirez'@'%'
-IDENTIFIED BY '1234';
+IDENTIFIED BY 'qwerty123';
 
 CREATE USER IF NOT EXISTS 'obed.vargas'@'%'
 IDENTIFIED BY '240145';
