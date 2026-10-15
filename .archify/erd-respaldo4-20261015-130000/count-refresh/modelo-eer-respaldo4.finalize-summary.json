@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "finalize",
+  "status": "pass",
+  "type": "erd",
+  "quality": "standard",
+  "specification": {
+    "path": "C:\\Users\\ti_la\\Documents\\practicas_BDN_240145\\.archify\\erd-respaldo4-20261015-130000\\candidate.json",
+    "sha256": "21fd9a9209064ae7643b92d2bab85bbca154f167750e4706ceca6d5a5fd7dff5",
+    "bytes": 11889
+  },
+  "artifact": {
+    "path": "C:\\Users\\ti_la\\Documents\\practicas_BDN_240145\\.archify\\erd-respaldo4-20261015-130000\\modelo-eer-respaldo4.html",
+    "sha256": "22752ee1ee2c3a7eafad346040a38c303db98ae48ec19442489d48c99d1ced48",
+    "bytes": 856508
+  },
+  "gates": {
+    "validate": "pass",
+    "deliver": "pass",
+    "check": "pass",
+    "browser-check": "pass"
+  },
+  "diagnostics": [],
+  "diagnosticSummary": {
+    "total": 0,
+    "shown": 0,
+    "truncated": false
+  },
+  "evidence": {
+    "receipt": "C:\\Users\\ti_la\\Documents\\practicas_BDN_240145\\.archify\\erd-respaldo4-20261015-130000\\count-refresh\\modelo-eer-respaldo4.finalize.json",
+    "summaryReceipt": "C:\\Users\\ti_la\\Documents\\practicas_BDN_240145\\.archify\\erd-respaldo4-20261015-130000\\count-refresh\\modelo-eer-respaldo4.finalize-summary.json",
+    "browserCheckReceipt": "C:\\Users\\ti_la\\Documents\\practicas_BDN_240145\\.archify\\erd-respaldo4-20261015-130000\\count-refresh\\modelo-eer-respaldo4.browser-check.json"
+  },
+  "update": {
+    "status": "current",
+    "installedVersion": "3.1.0",
+    "availableVersion": "3.1.0",
+    "releaseNotes": null,
+    "checkedAt": "2026-10-15T19:07:30.541Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  },
+  "visualReview": "not-requested",
+  "durationMs": 2884,
+  "visualReviewRecommendation": {
+    "action": "inspect-route-readability",
+    "signals": {
+      "routesOverSuggestedBends": 3,
+      "routesOverSuggestedStretch": 1
+    },
+    "reason": "Automated gates passed, but crossings or detours still need perceptual review before claiming visual quality.",
+    "affectedRoutes": {
+      "crossings": [],
+      "detours": [
+        {
+          "relationship": {
+            "id": "fk_products2",
+            "from": "tbd_products_users_providers",
+            "to": "tb_products",
+            "label": "fk_products2",
+            "collectionIndex": 3,
+            "artifactIndex": 4
+          },
+          "bends": 4,
+          "stretch": 1.445
+        },
+        {
+          "relationship": {
+            "id": "fk_user1",
+            "from": "tbd_products_users_providers",
+            "to": "tb_users",
+            "label": "fk_user1",
+            "collectionIndex": 4,
+            "artifactIndex": 5
+          },
+          "bends": 4,
+          "stretch": 1.215
+        },
+        {
+          "relationship": {
+            "id": "fk_user2",
+            "from": "tbd_users_wishlist_products",
+            "to": "tb_users",
+            "label": "fk_user2",
+            "collectionIndex": 6,
+            "artifactIndex": 7
+          },
+          "bends": 3,
+          "stretch": 1.051
+        }
+      ],
+      "truncated": false
+    },
+    "repair": "Advisory only: this mode places or routes these relationships itself. Report them; do not remove relationships or meaning to reduce crossings."
+  }
+}

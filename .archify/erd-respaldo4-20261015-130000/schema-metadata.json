@@ -1,0 +1,730 @@
+{
+  "source": "Practicas03/backups/respaldo4.sql",
+  "dialect": "MySQL 8.0.36",
+  "database": "db_test_7b",
+  "analyzedAt": "2026-10-15T19:16:26.985103+00:00",
+  "counts": {
+    "tables": 8,
+    "columns": 53,
+    "primaryKeys": 8,
+    "foreignKeys": 8,
+    "confirmedRelationships": 8,
+    "insertRowsInBackup": 10039,
+    "rowCountSource": "calculated_from_backup_inserts",
+    "liveDatabaseConnection": false
+  },
+  "objects": {
+    "views": [
+      "vw_trazabilidad_categorias_productos",
+      "vw_trazabilidad_categories",
+      "vw_trazabilidad_categorizaciones",
+      "vw_trazabilidad_productos",
+      "vw_trazabilidad_productos_categorias",
+      "vw_trazabilidad_usuarios"
+    ],
+    "procedures": [
+      "sp_restore_product",
+      "sp_soft_delete_product"
+    ],
+    "functions": [],
+    "triggers": [
+      "tg_tbc_categories_after_delete",
+      "tg_tbc_categories_after_insert",
+      "tg_tbc_categories_after_update",
+      "trg_products_after_delete",
+      "trg_products_after_insert",
+      "trg_products_after_update",
+      "trg_users_after_delete",
+      "trg_users_after_insert",
+      "trg_users_after_update"
+    ],
+    "sequences": []
+  },
+  "viewColumns": {
+    "vw_trazabilidad_categorias_productos": [
+      "category_id",
+      "category",
+      "category_path",
+      "category_level",
+      "total_products",
+      "total_active_products",
+      "total_inactive_products",
+      "total_uncategorized_products"
+    ],
+    "vw_trazabilidad_categories": [
+      "id",
+      "name",
+      "description",
+      "id_categoria_superior",
+      "categoria_superior",
+      "status",
+      "modified_by",
+      "roles",
+      "operation",
+      "table_description",
+      "operation_date"
+    ],
+    "vw_trazabilidad_categorizaciones": [
+      "id_producto",
+      "producto",
+      "id_categoria",
+      "categoria",
+      "estado",
+      "fecha_asignacion",
+      "ultima_actualizacion"
+    ],
+    "vw_trazabilidad_productos": [
+      "log_id",
+      "table_name",
+      "operacion",
+      "usuario_bd",
+      "fecha_operacion",
+      "detalle_cambio",
+      "estado_operacion"
+    ],
+    "vw_trazabilidad_productos_categorias": [
+      "id_producto",
+      "producto",
+      "id_categoria",
+      "categoria",
+      "estado",
+      "fecha_asignacion",
+      "ultima_actualizacion"
+    ],
+    "vw_trazabilidad_usuarios": [
+      "nick",
+      "email",
+      "inserted_by",
+      "roles",
+      "table_description",
+      "operation_date"
+    ]
+  },
+  "tables": [
+    {
+      "name": "tb_carts",
+      "columns": [
+        {
+          "name": "ID",
+          "type": "int unsigned",
+          "nullable": false,
+          "default": null,
+          "auto": true
+        },
+        {
+          "name": "user_ID",
+          "type": "int unsigned",
+          "nullable": false,
+          "default": null,
+          "auto": false
+        },
+        {
+          "name": "status",
+          "type": "bit(1)",
+          "nullable": false,
+          "default": "b'1'",
+          "auto": false
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime",
+          "nullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "auto": false
+        },
+        {
+          "name": "last_update",
+          "type": "datetime",
+          "nullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "auto": false
+        }
+      ],
+      "pk": [
+        "ID"
+      ],
+      "uniques": [
+        [
+          "uk_cart_user",
+          [
+            "user_ID"
+          ]
+        ]
+      ],
+      "indexes": [],
+      "fks": [
+        {
+          "name": "fk_carts_user",
+          "columns": [
+            "user_ID"
+          ],
+          "target": "tb_users",
+          "targetCols": [
+            "ID"
+          ]
+        }
+      ],
+      "count": 0,
+      "ddl": "CREATE TABLE `tb_carts` (\n  `ID` int unsigned NOT NULL AUTO_INCREMENT,\n  `user_ID` int unsigned NOT NULL,\n  `status` bit(1) NOT NULL DEFAULT b'1',\n  `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,\n  `last_update` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n  PRIMARY KEY (`ID`),\n  UNIQUE KEY `uk_cart_user` (`user_ID`),\n  CONSTRAINT `fk_carts_user` FOREIGN KEY (`user_ID`) REFERENCES `tb_users` (`ID`)\n)"
+    },
+    {
+      "name": "tb_logs",
+      "columns": [
+        {
+          "name": "ID",
+          "type": "int",
+          "nullable": false,
+          "default": null,
+          "auto": true
+        },
+        {
+          "name": "table_name",
+          "type": "varchar(80)",
+          "nullable": false,
+          "default": null,
+          "auto": false
+        },
+        {
+          "name": "table_operation",
+          "type": "enum('Create','Read','Update','Delete')",
+          "nullable": true,
+          "default": "NULL",
+          "auto": false
+        },
+        {
+          "name": "db_users",
+          "type": "varchar(80)",
+          "nullable": false,
+          "default": null,
+          "auto": false
+        },
+        {
+          "name": "operation_date",
+          "type": "datetime",
+          "nullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "auto": false
+        },
+        {
+          "name": "table_description",
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "auto": false
+        },
+        {
+          "name": "operation_status",
+          "type": "bit(1)",
+          "nullable": true,
+          "default": "b'1'",
+          "auto": false
+        }
+      ],
+      "pk": [
+        "ID"
+      ],
+      "uniques": [],
+      "indexes": [],
+      "fks": [],
+      "count": 5025,
+      "ddl": "CREATE TABLE `tb_logs` (\n  `ID` int NOT NULL AUTO_INCREMENT,\n  `table_name` varchar(80) NOT NULL,\n  `table_operation` enum('Create','Read','Update','Delete') DEFAULT NULL,\n  `db_users` varchar(80) NOT NULL,\n  `operation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,\n  `table_description` text NOT NULL,\n  `operation_status` bit(1) DEFAULT b'1',\n  PRIMARY KEY (`ID`)\n)"
+    },
+    {
+      "name": "tb_products",
+      "columns": [
+        {
+          "name": "ID",
+          "type": "int unsigned",
+          "nullable": false,
+          "default": null,
+          "auto": true
+        },
+        {
+          "name": "SKU",
+          "type": "varchar(50)",
+          "nullable": false,
+          "default": null,
+          "auto": false
+        },
+        {
+          "name": "name",
+          "type": "varchar(250)",
+          "nullable": false,
+          "default": null,
+          "auto": false
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "auto": false
+        },
+        {
+          "name": "current_price",
+          "type": "decimal(10,2)",
+          "nullable": false,
+          "default": "'0.00'",
+          "auto": false
+        },
+        {
+          "name": "current_stock",
+          "type": "int unsigned",
+          "nullable": false,
+          "default": "'0'",
+          "auto": false
+        },
+        {
+          "name": "status",
+          "type": "bit(1)",
+          "nullable": true,
+          "default": "b'1'",
+          "auto": false
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime",
+          "nullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "auto": false
+        },
+        {
+          "name": "last_update",
+          "type": "datetime",
+          "nullable": false,
+          "default": null,
+          "auto": false
+        }
+      ],
+      "pk": [
+        "ID"
+      ],
+      "uniques": [
+        [
+          "SKU",
+          [
+            "SKU"
+          ]
+        ]
+      ],
+      "indexes": [],
+      "fks": [],
+      "count": 5007,
+      "ddl": "CREATE TABLE `tb_products` (\n  `ID` int unsigned NOT NULL AUTO_INCREMENT,\n  `SKU` varchar(50) NOT NULL,\n  `name` varchar(250) NOT NULL,\n  `description` text,\n  `current_price` decimal(10,2) NOT NULL DEFAULT '0.00',\n  `current_stock` int unsigned NOT NULL DEFAULT '0',\n  `status` bit(1) DEFAULT b'1',\n  `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,\n  `last_update` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,\n  PRIMARY KEY (`ID`),\n  UNIQUE KEY `SKU` (`SKU`)\n)"
+    },
+    {
+      "name": "tb_users",
+      "columns": [
+        {
+          "name": "ID",
+          "type": "int unsigned",
+          "nullable": false,
+          "default": null,
+          "auto": true
+        },
+        {
+          "name": "email",
+          "type": "varchar(100)",
+          "nullable": false,
+          "default": null,
+          "auto": false
+        },
+        {
+          "name": "nick",
+          "type": "varchar(50)",
+          "nullable": false,
+          "default": null,
+          "auto": false
+        },
+        {
+          "name": "password",
+          "type": "varchar(255)",
+          "nullable": false,
+          "default": null,
+          "auto": false
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime",
+          "nullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "auto": false
+        },
+        {
+          "name": "last_update",
+          "type": "datetime",
+          "nullable": true,
+          "default": "NULL",
+          "auto": false
+        },
+        {
+          "name": "last_login",
+          "type": "datetime",
+          "nullable": true,
+          "default": "NULL",
+          "auto": false
+        },
+        {
+          "name": "status",
+          "type": "bit(1)",
+          "nullable": true,
+          "default": "b'1'",
+          "auto": false
+        }
+      ],
+      "pk": [
+        "ID"
+      ],
+      "uniques": [
+        [
+          "email",
+          [
+            "email"
+          ]
+        ],
+        [
+          "nick",
+          [
+            "nick"
+          ]
+        ]
+      ],
+      "indexes": [],
+      "fks": [],
+      "count": 7,
+      "ddl": "CREATE TABLE `tb_users` (\n  `ID` int unsigned NOT NULL AUTO_INCREMENT,\n  `email` varchar(100) NOT NULL,\n  `nick` varchar(50) NOT NULL,\n  `password` varchar(255) NOT NULL,\n  `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,\n  `last_update` datetime DEFAULT NULL,\n  `last_login` datetime DEFAULT NULL,\n  `status` bit(1) DEFAULT b'1',\n  PRIMARY KEY (`ID`),\n  UNIQUE KEY `email` (`email`),\n  UNIQUE KEY `nick` (`nick`)\n)"
+    },
+    {
+      "name": "tbc_categories",
+      "columns": [
+        {
+          "name": "ID",
+          "type": "int unsigned",
+          "nullable": false,
+          "default": null,
+          "auto": true
+        },
+        {
+          "name": "name",
+          "type": "varchar(120)",
+          "nullable": false,
+          "default": null,
+          "auto": false
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "auto": false
+        },
+        {
+          "name": "sup_id_category",
+          "type": "int unsigned",
+          "nullable": true,
+          "default": "NULL",
+          "auto": false
+        },
+        {
+          "name": "status",
+          "type": "bit(1)",
+          "nullable": false,
+          "default": "b'1'",
+          "auto": false
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime",
+          "nullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "auto": false
+        },
+        {
+          "name": "last_update",
+          "type": "datetime",
+          "nullable": false,
+          "default": null,
+          "auto": false
+        }
+      ],
+      "pk": [
+        "ID"
+      ],
+      "uniques": [
+        [
+          "name",
+          [
+            "name"
+          ]
+        ]
+      ],
+      "indexes": [
+        [
+          "fk_superior_category",
+          [
+            "sup_id_category"
+          ]
+        ]
+      ],
+      "fks": [
+        {
+          "name": "fk_superior_category",
+          "columns": [
+            "sup_id_category"
+          ],
+          "target": "tbc_categories",
+          "targetCols": [
+            "ID"
+          ]
+        }
+      ],
+      "count": 0,
+      "ddl": "CREATE TABLE `tbc_categories` (\n  `ID` int unsigned NOT NULL AUTO_INCREMENT,\n  `name` varchar(120) NOT NULL,\n  `description` text,\n  `sup_id_category` int unsigned DEFAULT NULL,\n  `status` bit(1) NOT NULL DEFAULT b'1',\n  `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,\n  `last_update` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,\n  PRIMARY KEY (`ID`),\n  UNIQUE KEY `name` (`name`),\n  KEY `fk_superior_category` (`sup_id_category`),\n  CONSTRAINT `fk_superior_category` FOREIGN KEY (`sup_id_category`) REFERENCES `tbc_categories` (`ID`)\n)"
+    },
+    {
+      "name": "tbd_products_categories",
+      "columns": [
+        {
+          "name": "category_ID",
+          "type": "int unsigned",
+          "nullable": false,
+          "default": null,
+          "auto": false
+        },
+        {
+          "name": "product_ID",
+          "type": "int unsigned",
+          "nullable": false,
+          "default": null,
+          "auto": false
+        },
+        {
+          "name": "status",
+          "type": "bit(1)",
+          "nullable": false,
+          "default": "b'1'",
+          "auto": false
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime",
+          "nullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "auto": false
+        },
+        {
+          "name": "last_update",
+          "type": "datetime",
+          "nullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "auto": false
+        }
+      ],
+      "pk": [
+        "category_ID",
+        "product_ID"
+      ],
+      "uniques": [],
+      "indexes": [
+        [
+          "idx_product",
+          [
+            "product_ID"
+          ]
+        ]
+      ],
+      "fks": [
+        {
+          "name": "fk_category_prod",
+          "columns": [
+            "category_ID"
+          ],
+          "target": "tbc_categories",
+          "targetCols": [
+            "ID"
+          ]
+        },
+        {
+          "name": "fk_product_cat",
+          "columns": [
+            "product_ID"
+          ],
+          "target": "tb_products",
+          "targetCols": [
+            "ID"
+          ]
+        }
+      ],
+      "count": 0,
+      "ddl": "CREATE TABLE `tbd_products_categories` (\n  `category_ID` int unsigned NOT NULL,\n  `product_ID` int unsigned NOT NULL,\n  `status` bit(1) NOT NULL DEFAULT b'1',\n  `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,\n  `last_update` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n  PRIMARY KEY (`category_ID`,`product_ID`),\n  KEY `idx_product` (`product_ID`),\n  CONSTRAINT `fk_category_prod` FOREIGN KEY (`category_ID`) REFERENCES `tbc_categories` (`ID`),\n  CONSTRAINT `fk_product_cat` FOREIGN KEY (`product_ID`) REFERENCES `tb_products` (`ID`)\n)"
+    },
+    {
+      "name": "tbd_products_users_providers",
+      "columns": [
+        {
+          "name": "user_ID",
+          "type": "int unsigned",
+          "nullable": false,
+          "default": null,
+          "auto": false
+        },
+        {
+          "name": "product_ID",
+          "type": "int unsigned",
+          "nullable": false,
+          "default": null,
+          "auto": false
+        },
+        {
+          "name": "type_ownership",
+          "type": "enum('Owner','Reseller','Distributor')",
+          "nullable": true,
+          "default": "NULL",
+          "auto": false
+        },
+        {
+          "name": "status",
+          "type": "bit(1)",
+          "nullable": false,
+          "default": "b'1'",
+          "auto": false
+        },
+        {
+          "name": "avalaible_date",
+          "type": "datetime",
+          "nullable": false,
+          "default": null,
+          "auto": false
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime",
+          "nullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "auto": false
+        },
+        {
+          "name": "last_update",
+          "type": "datetime",
+          "nullable": false,
+          "default": null,
+          "auto": false
+        }
+      ],
+      "pk": [
+        "user_ID",
+        "product_ID"
+      ],
+      "uniques": [],
+      "indexes": [
+        [
+          "fk_products2",
+          [
+            "product_ID"
+          ]
+        ]
+      ],
+      "fks": [
+        {
+          "name": "fk_products2",
+          "columns": [
+            "product_ID"
+          ],
+          "target": "tb_products",
+          "targetCols": [
+            "ID"
+          ]
+        },
+        {
+          "name": "fk_user1",
+          "columns": [
+            "user_ID"
+          ],
+          "target": "tb_users",
+          "targetCols": [
+            "ID"
+          ]
+        }
+      ],
+      "count": 0,
+      "ddl": "CREATE TABLE `tbd_products_users_providers` (\n  `user_ID` int unsigned NOT NULL,\n  `product_ID` int unsigned NOT NULL,\n  `type_ownership` enum('Owner','Reseller','Distributor') DEFAULT NULL,\n  `status` bit(1) NOT NULL DEFAULT b'1',\n  `avalaible_date` datetime NOT NULL,\n  `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,\n  `last_update` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,\n  PRIMARY KEY (`user_ID`,`product_ID`),\n  KEY `fk_products2` (`product_ID`),\n  CONSTRAINT `fk_products2` FOREIGN KEY (`product_ID`) REFERENCES `tb_products` (`ID`),\n  CONSTRAINT `fk_user1` FOREIGN KEY (`user_ID`) REFERENCES `tb_users` (`ID`)\n)"
+    },
+    {
+      "name": "tbd_users_wishlist_products",
+      "columns": [
+        {
+          "name": "user_ID",
+          "type": "int unsigned",
+          "nullable": false,
+          "default": null,
+          "auto": false
+        },
+        {
+          "name": "product_ID",
+          "type": "int unsigned",
+          "nullable": false,
+          "default": null,
+          "auto": false
+        },
+        {
+          "name": "status",
+          "type": "bit(1)",
+          "nullable": false,
+          "default": "b'1'",
+          "auto": false
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime",
+          "nullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "auto": false
+        },
+        {
+          "name": "last_update",
+          "type": "datetime",
+          "nullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "auto": false
+        }
+      ],
+      "pk": [
+        "user_ID",
+        "product_ID"
+      ],
+      "uniques": [],
+      "indexes": [
+        [
+          "fk_products3",
+          [
+            "product_ID"
+          ]
+        ]
+      ],
+      "fks": [
+        {
+          "name": "fk_products3",
+          "columns": [
+            "product_ID"
+          ],
+          "target": "tb_products",
+          "targetCols": [
+            "ID"
+          ]
+        },
+        {
+          "name": "fk_user2",
+          "columns": [
+            "user_ID"
+          ],
+          "target": "tb_users",
+          "targetCols": [
+            "ID"
+          ]
+        }
+      ],
+      "count": 0,
+      "ddl": "CREATE TABLE `tbd_users_wishlist_products` (\n  `user_ID` int unsigned NOT NULL,\n  `product_ID` int unsigned NOT NULL,\n  `status` bit(1) NOT NULL DEFAULT b'1',\n  `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,\n  `last_update` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n  PRIMARY KEY (`user_ID`,`product_ID`),\n  KEY `fk_products3` (`product_ID`),\n  CONSTRAINT `fk_products3` FOREIGN KEY (`product_ID`) REFERENCES `tb_products` (`ID`),\n  CONSTRAINT `fk_user2` FOREIGN KEY (`user_ID`) REFERENCES `tb_users` (`ID`)\n)"
+    }
+  ]
+}

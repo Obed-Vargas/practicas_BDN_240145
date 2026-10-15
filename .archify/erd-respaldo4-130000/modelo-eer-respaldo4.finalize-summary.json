@@ -1,0 +1,272 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "finalize",
+  "status": "pass",
+  "type": "erd",
+  "quality": "standard",
+  "specification": {
+    "path": "C:\\Users\\ti_la\\Documents\\practicas_BDN_240145\\.archify\\erd-respaldo4-20261015-130000\\candidate.json",
+    "sha256": "2721934c8ef021be50e5262b9cd867e4c21ab09d78bf6a8b8b20f2acb128eb32",
+    "bytes": 11890
+  },
+  "artifact": {
+    "path": "C:\\Users\\ti_la\\Documents\\practicas_BDN_240145\\.archify\\erd-respaldo4-130000\\modelo-eer-respaldo4.html",
+    "sha256": "cc410e66c35f589c0a9f5fa1ea7ffa08cbe37d7cc241ddc39ab13151d1afc98d",
+    "bytes": 856875
+  },
+  "gates": {
+    "validate": "pass",
+    "deliver": "pass",
+    "check": "pass",
+    "browser-check": "pass"
+  },
+  "diagnostics": [],
+  "diagnosticSummary": {
+    "total": 0,
+    "shown": 0,
+    "truncated": false
+  },
+  "evidence": {
+    "receipt": "C:\\Users\\ti_la\\Documents\\practicas_BDN_240145\\.archify\\erd-respaldo4-130000\\modelo-eer-respaldo4.finalize.json",
+    "summaryReceipt": "C:\\Users\\ti_la\\Documents\\practicas_BDN_240145\\.archify\\erd-respaldo4-130000\\modelo-eer-respaldo4.finalize-summary.json",
+    "browserCheckReceipt": "C:\\Users\\ti_la\\Documents\\practicas_BDN_240145\\.archify\\erd-respaldo4-130000\\modelo-eer-respaldo4.browser-check.json"
+  },
+  "update": {
+    "status": "current",
+    "installedVersion": "3.1.0",
+    "availableVersion": "3.1.0",
+    "releaseNotes": null,
+    "checkedAt": "2026-10-15T19:07:30.541Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  },
+  "visualReview": "not-requested",
+  "durationMs": 2808,
+  "visualReviewRecommendation": {
+    "action": "inspect-route-readability",
+    "signals": {
+      "routesOverSuggestedBends": 5,
+      "routesOverSuggestedStretch": 3
+    },
+    "reason": "Automated gates passed, but crossings or detours still need perceptual review before claiming visual quality.",
+    "affectedRoutes": {
+      "crossings": [],
+      "detours": [
+        {
+          "relationship": {
+            "id": "fk_carts_user",
+            "from": "tb_carts",
+            "to": "tb_users",
+            "label": "fk_carts_user",
+            "collectionIndex": 0,
+            "artifactIndex": 1
+          },
+          "bends": 4,
+          "stretch": 1.659,
+          "directCorridorBlockers": [
+            {
+              "id": "tb_logs",
+              "label": "tb_logs",
+              "box": [
+                40,
+                271,
+                420,
+                176
+              ]
+            },
+            {
+              "id": "tb_products",
+              "label": "tb_products",
+              "box": [
+                125,
+                547,
+                250,
+                216
+              ]
+            }
+          ]
+        },
+        {
+          "relationship": {
+            "id": "fk_products2",
+            "from": "tbd_products_users_providers",
+            "to": "tb_products",
+            "label": "fk_products2",
+            "collectionIndex": 3,
+            "artifactIndex": 4
+          },
+          "bends": 3,
+          "stretch": 1.042,
+          "directCorridorBlockers": [
+            {
+              "id": "tb_users",
+              "label": "tb_users",
+              "box": [
+                125,
+                863,
+                250,
+                196
+              ]
+            },
+            {
+              "id": "tbc_categories",
+              "label": "tbc_categories",
+              "box": [
+                125,
+                1159,
+                250,
+                176
+              ]
+            },
+            {
+              "id": "tbd_products_categories",
+              "label": "tbd_products_categories",
+              "box": [
+                125,
+                1435,
+                250,
+                136
+              ]
+            }
+          ]
+        },
+        {
+          "relationship": {
+            "id": "fk_user1",
+            "from": "tbd_products_users_providers",
+            "to": "tb_users",
+            "label": "fk_user1",
+            "collectionIndex": 4,
+            "artifactIndex": 5
+          },
+          "bends": 3,
+          "stretch": 1.057,
+          "directCorridorBlockers": [
+            {
+              "id": "tbc_categories",
+              "label": "tbc_categories",
+              "box": [
+                125,
+                1159,
+                250,
+                176
+              ]
+            },
+            {
+              "id": "tbd_products_categories",
+              "label": "tbd_products_categories",
+              "box": [
+                125,
+                1435,
+                250,
+                136
+              ]
+            }
+          ]
+        },
+        {
+          "relationship": {
+            "id": "fk_products3",
+            "from": "tbd_users_wishlist_products",
+            "to": "tb_products",
+            "label": "fk_products3",
+            "collectionIndex": 5,
+            "artifactIndex": 6
+          },
+          "bends": 6,
+          "stretch": 2.948,
+          "directCorridorBlockers": [
+            {
+              "id": "tb_users",
+              "label": "tb_users",
+              "box": [
+                125,
+                863,
+                250,
+                196
+              ]
+            },
+            {
+              "id": "tbc_categories",
+              "label": "tbc_categories",
+              "box": [
+                125,
+                1159,
+                250,
+                176
+              ]
+            },
+            {
+              "id": "tbd_products_categories",
+              "label": "tbd_products_categories",
+              "box": [
+                125,
+                1435,
+                250,
+                136
+              ]
+            },
+            {
+              "id": "tbd_products_users_providers",
+              "label": "tbd_products_users_providers",
+              "box": [
+                35,
+                1671,
+                430,
+                176
+              ]
+            }
+          ]
+        },
+        {
+          "relationship": {
+            "id": "fk_user2",
+            "from": "tbd_users_wishlist_products",
+            "to": "tb_users",
+            "label": "fk_user2",
+            "collectionIndex": 6,
+            "artifactIndex": 7
+          },
+          "bends": 4,
+          "stretch": 1.541,
+          "directCorridorBlockers": [
+            {
+              "id": "tbc_categories",
+              "label": "tbc_categories",
+              "box": [
+                125,
+                1159,
+                250,
+                176
+              ]
+            },
+            {
+              "id": "tbd_products_categories",
+              "label": "tbd_products_categories",
+              "box": [
+                125,
+                1435,
+                250,
+                136
+              ]
+            },
+            {
+              "id": "tbd_products_users_providers",
+              "label": "tbd_products_users_providers",
+              "box": [
+                35,
+                1671,
+                430,
+                176
+              ]
+            }
+          ]
+        }
+      ],
+      "truncated": false
+    },
+    "repair": "Advisory only: this mode places or routes these relationships itself. Report them; do not remove relationships or meaning to reduce crossings."
+  }
+}
