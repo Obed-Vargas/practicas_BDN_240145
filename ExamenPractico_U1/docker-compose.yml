@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  postgres_obed:
+    image: postgres:15-alpine
+    container_name: postgres_obed
+    restart: always
+    environment:
+      POSTGRES_USER: obed
+      POSTGRES_PASSWORD: "1234"
+      POSTGRES_DB: db_240145
+    ports:
+      - "40145:5432"
+    volumes:
+      - postgres_data_240145:/var/lib/postgresql/data
+
+  mysql_obed:
+    image: mysql:8.0
+    container_name: mysql_obed
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: obed_root_password
+      MYSQL_DATABASE: db_240145
+      MYSQL_USER: obed
+      MYSQL_PASSWORD: "1234"
+    ports:
+      - "40146:3306"
+    volumes:
+      - mysql_data_240145:/var/lib/mysql
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin_global
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: obed@proyectos-integradores-7b-itiid.tech
+      PGADMIN_DEFAULT_PASSWORD: "1305"
+    ports:
+      - "80:80"
+
+volumes:
+  postgres_data_240145:
+  mysql_data_240145:
