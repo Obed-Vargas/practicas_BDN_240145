@@ -3,20 +3,20 @@ version: '3.8'
 services:
   postgres_obed:
     image: postgres:15-alpine
-    container_name: postgres_240145        # <--- Nombre único
+    container_name: postgres_240145
     restart: always
     environment:
       POSTGRES_USER: obed
       POSTGRES_PASSWORD: "240145"
       POSTGRES_DB: db_240145
     ports:
-      - "40145:5432"
+      - "40145:5432"               # <--- Puerto 40145 reservado para PostgreSQL
     volumes:
       - postgres_data_240145:/var/lib/postgresql/data
 
   mysql_obed:
     image: mysql:8.0
-    container_name: mysql_240145           # <--- Nombre único
+    container_name: mysql_240145
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: obed_root_password
@@ -24,19 +24,19 @@ services:
       MYSQL_USER: obed
       MYSQL_PASSWORD: "240145"
     ports:
-      - "40146:3306"
+      - "40146:3306"               # <--- Puerto 40146 reservado para MySQL
     volumes:
       - mysql_data_240145:/var/lib/mysql
 
   pgadmin:
     image: dpage/pgadmin4
-    container_name: pgadmin_240145         # <--- Cámbialo de pgadmin_global a pgadmin_240145
+    container_name: pgadmin_240145
     restart: always
     environment:
       PGADMIN_DEFAULT_EMAIL: obed@proyectos-integradores-7b-itiid.tech
       PGADMIN_DEFAULT_PASSWORD: "240145"
     ports:
-      - "40145:80"
+      - "40147:80"                 # <--- Cambia 40145 por 40147 para pgAdmin
 
 volumes:
   postgres_data_240145:
