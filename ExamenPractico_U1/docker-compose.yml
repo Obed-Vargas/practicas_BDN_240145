@@ -3,7 +3,7 @@ version: '3.8'
 services:
   postgres_obed:
     image: postgres:15-alpine
-    container_name: postgres_obed
+    container_name: postgres_240145        # <--- Nombre único
     restart: always
     environment:
       POSTGRES_USER: obed
@@ -16,7 +16,7 @@ services:
 
   mysql_obed:
     image: mysql:8.0
-    container_name: mysql_obed
+    container_name: mysql_240145           # <--- Nombre único
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: obed_root_password
@@ -30,13 +30,13 @@ services:
 
   pgadmin:
     image: dpage/pgadmin4
-    container_name: pgadmin_global
+    container_name: pgadmin_240145         # <--- Cámbialo de pgadmin_global a pgadmin_240145
     restart: always
     environment:
       PGADMIN_DEFAULT_EMAIL: obed@proyectos-integradores-7b-itiid.tech
       PGADMIN_DEFAULT_PASSWORD: "240145"
     ports:
-      - "80:80"
+      - "40145:80"
 
 volumes:
   postgres_data_240145:
