@@ -33,7 +33,7 @@ services:
     container_name: pgadmin_240145
     restart: always
     environment:
-      PGADMIN_DEFAULT_EMAIL: obed@proyectos-integradores-7b-itiid.tech
+      PGADMIN_DEFAULT_EMAIL: 240145@utxicotepec.edu.mx
       PGADMIN_DEFAULT_PASSWORD: "240145"
     ports:
       - "40147:80"                 # <--- Cambia 40145 por 40147 para pgAdmin
