@@ -16,11 +16,9 @@ BEGIN
     DECLARE v_age_valid_count int unsigned DEFAULT NULL;
     DECLARE v_country_count int unsigned DEFAULT 0;
     DECLARE v_attempt tinyint unsigned DEFAULT 0;
-    DECLARE v_collision_count int unsigned DEFAULT 0;
     DECLARE v_duplicate_key boolean DEFAULT FALSE;
     DECLARE v_transaction_started boolean DEFAULT FALSE;
     DECLARE v_now datetime;
-    DECLARE v_token char(12);
     DECLARE v_catalog json;
     DECLARE v_birth_start date;
     DECLARE v_birth_end date;
@@ -173,27 +171,7 @@ BEGIN
         )
     );
 
-    SET v_token = LOWER(LEFT(REPLACE(UUID(), '-', ''), 12));
     SET v_attempt = 0;
-
-    collision_check: LOOP
-        SELECT COUNT(*) INTO v_collision_count
-        FROM `tb_users`
-        WHERE `email` LIKE CONCAT('%.', v_token, '.%@example.com')
-           OR `nick` LIKE CONCAT('%.', v_token, '.%');
-
-        IF v_collision_count = 0 THEN
-            LEAVE collision_check;
-        END IF;
-
-        IF v_attempt >= 5 THEN
-            SIGNAL SQLSTATE '45000'
-                SET MESSAGE_TEXT = 'No se encontro un sufijo unico despues de cinco intentos.';
-        END IF;
-
-        SET v_attempt = v_attempt + 1;
-        SET v_token = LOWER(LEFT(REPLACE(UUID(), '-', ''), 12));
-    END LOOP;
 
     IF v_scenario = 'INTERNATIONAL_2000' THEN
         SET v_birth_start = DATE_ADD(
@@ -217,7 +195,7 @@ BEGIN
         `synthetic_birthdays` AS (
             SELECT DATE_ADD(
                        v_birth_start,
-                       INTERVAL MOD(CRC32(CONCAT(v_token, ':', `seq`)), v_birth_span) DAY
+                       INTERVAL MOD(CRC32(CONCAT(UUID(), ':', `seq`)), v_birth_span) DAY
                    ) AS `birth_date`
             FROM `numbers`
             WHERE `seq` <= v_total
@@ -303,7 +281,9 @@ BEGIN
             FLOOR(RAND() * 94608001) AS `creation_offset`,
             FLOOR(RAND() * 100) AS `update_roll`,
             FLOOR(RAND() * 100) AS `login_roll`,
-            FLOOR(RAND() * 100) AS `status_roll`
+            FLOOR(RAND() * 100) AS `status_roll`,
+            LOWER(LEFT(REPLACE(UUID(), '-', ''), 12)) AS `email_suffix`,
+            LOWER(LEFT(REPLACE(UUID(), '-', ''), 12)) AS `nick_suffix`
         FROM `numbered` AS n
         JOIN `country_pool` AS c
           ON c.`country_no` = 1 + MOD(n.`seq` - 1, v_country_count)
@@ -348,9 +328,10 @@ BEGIN
         FROM `named_rows`
     )
     SELECT
-        LOWER(CONCAT(`given_name`, '.', `family_name`, '.', v_token, '.',
-                     LPAD(`seq`, 4, '0'), '@example.com')),
-        LOWER(CONCAT(`given_name`, '.', `family_name`, '.', v_token, '.', LPAD(`seq`, 4, '0'))),
+        LOWER(CONCAT(`given_name`, '.', `family_name`, '.', LPAD(`seq`, 4, '0'),
+                     '.', `email_suffix`, '@example.com')),
+        LOWER(CONCAT(`given_name`, '.', `family_name`, '.', LPAD(`seq`, 4, '0'),
+                     '.', `nick_suffix`)),
         MD5('TestOnly!2026'),
         DATE_SUB(v_now, INTERVAL `creation_offset` SECOND),
         CASE
@@ -382,37 +363,12 @@ BEGIN
         END IF;
 
         SET v_attempt = v_attempt + 1;
-
-        token_retry: LOOP
-            SET v_token = LOWER(LEFT(REPLACE(UUID(), '-', ''), 12));
-            SELECT COUNT(*) INTO v_collision_count
-            FROM `tb_users`
-            WHERE `email` LIKE CONCAT('%.', v_token, '.%@example.com')
-               OR `nick` LIKE CONCAT('%.', v_token, '.%');
-
-            IF v_collision_count = 0 THEN
-                LEAVE token_retry;
-            END IF;
-
-            IF v_attempt >= 5 THEN
-                SIGNAL SQLSTATE '45000'
-                    SET MESSAGE_TEXT = 'No se encontro un sufijo unico tras cinco reintentos.';
-            END IF;
-            SET v_attempt = v_attempt + 1;
-        END LOOP;
     ELSE
 
         IF v_inserted <> v_total THEN
             SIGNAL SQLSTATE '45000'
                 SET MESSAGE_TEXT = 'La cantidad insertada no coincide con el escenario solicitado.';
         END IF;
-
-        SELECT
-            COALESCE(SUM(`status` = b'1'), 0),
-            COALESCE(SUM(`status` = b'0'), 0)
-        INTO v_active_count, v_inactive_count
-        FROM `tb_users`
-        WHERE `email` LIKE CONCAT('%.', v_token, '.%@example.com');
 
         IF v_scenario = 'STATUS_5000'
            AND (v_active_count <> 4000 OR v_inactive_count <> 1000) THEN
@@ -428,14 +384,13 @@ BEGIN
 
     SELECT
         v_scenario AS `scenario`,
-        v_token AS `execution_token`,
         v_total AS `requested_count`,
         v_inserted AS `inserted_count`,
         v_active_count AS `active_count`,
         v_inactive_count AS `inactive_count`,
         v_country_count AS `generated_country_count`,
         v_age_valid_count AS `international_ages_19_to_35_validated`,
-        'birth_date_and_country_are_not_stored' AS `storage_limitation`;
+        'batch_history_birth_date_and_country_are_not_stored' AS `storage_limitation`;
 END$$
 
 DELIMITER ;
