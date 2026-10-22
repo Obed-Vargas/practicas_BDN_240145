@@ -17,6 +17,13 @@ IDENTIFIED BY '240629';
 CREATE USER IF NOT EXISTS 'jorge.eloy'@'%'
 IDENTIFIED BY '240456';
 
+/*USUARIOS MIDDLEWARE*/
+CREATE USER IF NOT EXISTS 'app_web'
+IDENTIFIED BY 'web123';
+
+CREATE USER IF NOT EXISTS 'app_mobile'
+IDENTIFIED BY 'Mobile890';
+
 
 /* ============================================================
    CONFIGURACIÓN GLOBAL Y PRIVILEGIOS DIRECTOS
@@ -92,6 +99,25 @@ GRANT SELECT, INSERT, UPDATE, DELETE
 ON db_test_7b.tb_products
 TO 'seller';
 
+/* BUYER */
+
+
+
+/*NOT REGISTERED*/
+GRANT INSERT
+ON db_test_7b.tb_users
+TO 'user_not_registered'; 
+
+GRANT INSERT
+ON db_test_7b.tb_people
+TO 'user_not_registered'; 
+
+GRANT EXECUTE ON 
+PROCEDURE db_test_7b.sp_register_new_user
+TO 'user_not_registered';
+
+
+
 
 /* ============================================================
    ASIGNACIÓN DE ROLES A LOS USUARIOS
@@ -112,6 +138,12 @@ TO 'yaneth.garrido'@'%';
 GRANT 'seller'
 TO 'osmar.ortega'@'%';
 
+/*ASIGANAR ROLES A LAS CREDENCIALES PARA LAS APPS*/
+GRANT 'user_not_registered'
+TO 'app_web'@'%';
+
+GRANT 'user_not_registered'
+TO 'app_mobile'@'%';
 
 /* ============================================================
    ESTABLECER ROLES PREDETERMINADOS
@@ -126,6 +158,9 @@ SET DEFAULT ROLE ALL TO 'obed.vargas'@'%';
 SET DEFAULT ROLE ALL TO 'marco.ramirez'@'%';
 SET DEFAULT ROLE ALL TO 'yaneth.garrido'@'%';
 SET DEFAULT ROLE ALL TO 'osmar.ortega'@'%';
+
+SET DEFAULT ROLE 'user_not_registered'@'%' TO 'app_web'@'%';
+SET DEFAULT ROLE 'user_not_registered'@'%' TO 'app_mobile'@'%';
 
 
 /* ============================================================
