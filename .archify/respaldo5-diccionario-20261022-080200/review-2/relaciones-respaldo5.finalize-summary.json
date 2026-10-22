@@ -1,0 +1,157 @@
+{
+  "schemaVersion": 1,
+  "ok": false,
+  "command": "finalize",
+  "status": "fail",
+  "type": "erd",
+  "quality": "standard",
+  "specification": {
+    "path": "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/candidate.json",
+    "sha256": "5dbc851f02e8f5abc8b032f1c0c2505514e64576666b9063a42fe533c62b6a9f",
+    "bytes": 18741
+  },
+  "artifact": {
+    "path": "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/relaciones-respaldo5.html",
+    "sha256": "3c63b1d669872c307fe0890cd80d6f20f2adf6edbf4a75ec440c701adbb3683c",
+    "bytes": 900943
+  },
+  "gates": {
+    "validate": "pass",
+    "deliver": "pass",
+    "check": "pass",
+    "browser-check": "fail"
+  },
+  "failedStage": "browser-check",
+  "diagnostics": [
+    {
+      "code": "viewer/projected-text-readability",
+      "severity": "error",
+      "message": "Projected context text is below the readability floor at 1440x900.",
+      "subject": {
+        "artifact": "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/relaciones-respaldo5.html",
+        "viewport": {
+          "width": 1440,
+          "height": 900,
+          "theme": "light"
+        }
+      },
+      "evidence": {
+        "text": "PK",
+        "detail": "context",
+        "owner": {
+          "kind": "node",
+          "id": "tb_buyer_orders"
+        },
+        "minimumProjectedNodeTextPx": 3.948500651890482,
+        "minimumRequiredNodeTextPx": 6
+      },
+      "supportedFixes": [
+        "increase projected node text to at least 6px at 1440x900, then rerun browser-check"
+      ]
+    },
+    {
+      "code": "viewer/projected-text-readability",
+      "severity": "error",
+      "message": "Projected context text is below the readability floor at 1600x1000.",
+      "subject": {
+        "artifact": "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/relaciones-respaldo5.html",
+        "viewport": {
+          "width": 1600,
+          "height": 1000,
+          "theme": "light"
+        }
+      },
+      "evidence": {
+        "text": "PK",
+        "detail": "context",
+        "owner": {
+          "kind": "node",
+          "id": "tb_buyer_orders"
+        },
+        "minimumProjectedNodeTextPx": 4.417861799217731,
+        "minimumRequiredNodeTextPx": 6
+      },
+      "supportedFixes": [
+        "increase projected node text to at least 6px at 1600x1000, then rerun browser-check"
+      ]
+    },
+    {
+      "code": "viewer/projected-text-readability",
+      "severity": "error",
+      "message": "Projected context text is below the readability floor at 1920x1080.",
+      "subject": {
+        "artifact": "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/relaciones-respaldo5.html",
+        "viewport": {
+          "width": 1920,
+          "height": 1080,
+          "theme": "light"
+        }
+      },
+      "evidence": {
+        "text": "PK",
+        "detail": "context",
+        "owner": {
+          "kind": "node",
+          "id": "tb_buyer_orders"
+        },
+        "minimumProjectedNodeTextPx": 5.356584093872229,
+        "minimumRequiredNodeTextPx": 6
+      },
+      "supportedFixes": [
+        "increase projected node text to at least 6px at 1920x1080, then rerun browser-check"
+      ]
+    },
+    {
+      "code": "viewer/projected-text-readability",
+      "severity": "error",
+      "message": "Projected context text is below the readability floor at 2048x1320.",
+      "subject": {
+        "artifact": "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/relaciones-respaldo5.html",
+        "viewport": {
+          "width": 2048,
+          "height": 1320,
+          "theme": "light"
+        }
+      },
+      "evidence": {
+        "text": "PK",
+        "detail": "context",
+        "owner": {
+          "kind": "node",
+          "id": "tb_buyer_orders"
+        },
+        "minimumProjectedNodeTextPx": 5.485658409387223,
+        "minimumRequiredNodeTextPx": 6
+      },
+      "supportedFixes": [
+        "increase projected node text to at least 6px at 2048x1320, then rerun browser-check"
+      ]
+    }
+  ],
+  "diagnosticSummary": {
+    "total": 4,
+    "shown": 4,
+    "truncated": false
+  },
+  "evidence": {
+    "receipt": "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/review-2/relaciones-respaldo5.finalize.json",
+    "summaryReceipt": "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/review-2/relaciones-respaldo5.finalize-summary.json",
+    "browserCheckReceipt": "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/review-2/relaciones-respaldo5.browser-check.json"
+  },
+  "update": {
+    "status": "current",
+    "installedVersion": "3.2.0",
+    "availableVersion": "3.2.0",
+    "releaseNotes": null,
+    "checkedAt": "2026-10-22T14:08:31.359Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  },
+  "visualReview": "not-requested",
+  "durationMs": 1615,
+  "browserCheck": {
+    "requested": true,
+    "ran": true
+  }
+}

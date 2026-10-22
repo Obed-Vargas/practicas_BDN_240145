@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "4057fa38-5558-41b4-9a90-27d6c791ef86",
+  "status": "current",
+  "command": "deliver",
+  "type": "erd",
+  "input": "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/candidate.json",
+  "output": "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/relaciones-respaldo5.html",
+  "specification": {
+    "sha256": "ef7330438ee50dd4d936de4d04f3f1d603ac061e38d815031f47397a14dd45c7",
+    "bytes": 18741
+  },
+  "artifact": {
+    "sha256": "63414a55179d42896979b08f1f1aff59cb999aeff255c34c14ee3c02397456d0",
+    "bytes": 900943
+  }
+}

@@ -1,0 +1,138 @@
+erDiagram
+    tb_buyer_orders {
+        int_unsigned ID PK
+        int_unsigned seller_ID FK
+        decimal_12_2_ subtotal
+        decimal_12_2_ shipping_cost
+        enum__Pending___Accepted___Preparing___Sent___Delivered___Canceled___Returned__ fulfillment_status
+        bit_1_ status
+        datetime creation_date
+        datetime last_update
+    }
+    tb_carts {
+        int_unsigned ID PK
+        int_unsigned user_ID FK UK
+        bit_1_ status
+        datetime creation_date
+        datetime last_update
+    }
+    tb_logs {
+        int ID PK
+        varchar_80_ table_name
+        enum__Create___Read___Update___Delete__ table_operation
+        varchar_80_ db_users
+        datetime operation_date
+        text table_description
+        bit_1_ operation_status
+    }
+    tb_products {
+        int_unsigned ID PK
+        varchar_50_ SKU UK
+        varchar_250_ name
+        text description
+        decimal_10_2_ current_price
+        int_unsigned current_stock
+        bit_1_ status
+        datetime creation_date
+        datetime last_update
+    }
+    tb_users {
+        int_unsigned ID PK
+        varchar_100_ email UK
+        varchar_50_ nick UK
+        varchar_255_ password
+        datetime creation_date
+        datetime last_update
+        datetime last_login
+        bit_1_ status
+    }
+    tbc_categories {
+        int_unsigned ID PK
+        varchar_120_ name UK
+        text description
+        int_unsigned sup_id_category FK
+        bit_1_ status
+        datetime creation_date
+        datetime last_update
+    }
+    tbc_payment_methods_types {
+        int_unsigned ID PK
+        varchar_30_ code UK
+        text description
+        bit_1_ status
+        datetime creation_date
+        datetime last_update
+    }
+    tbd_carts_items {
+        int_unsigned cart_ID PK FK
+        int_unsigned provider_ID PK FK
+        int_unsigned product_ID PK FK
+        int_unsigned quantity
+        datetime creation_date
+    }
+    tbd_order_items {
+        int_unsigned ID PK
+        int_unsigned seller_order_ID FK
+        int_unsigned product_ID FK
+        int_unsigned provider_ID FK
+        varchar_255_ product_name
+        int_unsigned quantity
+        decimal_12_2_ unit_price
+        decimal_12_2_ subtotal
+        datetime creation_date
+    }
+    tbd_products_categories {
+        int_unsigned category_ID PK FK
+        int_unsigned product_ID PK FK
+        bit_1_ status
+        datetime creation_date
+        datetime last_update
+    }
+    tbd_products_users_providers {
+        int_unsigned user_ID PK FK
+        int_unsigned product_ID PK FK
+        enum__Owner___Reseller___Distributor__ type_ownership
+        bit_1_ status
+        datetime avalaible_date
+        datetime creation_date
+        datetime last_update
+    }
+    tbd_user_payment_methods {
+        bigint_unsigned ID PK
+        int_unsigned user_ID FK
+        int_unsigned payment_method_type_ID FK
+        varchar_50_ provider UK
+        varchar_255_ provider_method_ref UK
+        varchar_100_ label
+        char_4_ last_four
+        tinyint_1_ is_default
+        bit_1_ status
+        datetime creation_date
+        datetime last_update
+    }
+    tbd_users_wishlist_products {
+        int_unsigned user_ID PK FK
+        int_unsigned product_ID PK FK
+        bit_1_ status
+        datetime creation_date
+        datetime last_update
+    }
+    tb_users ||--o{ tb_buyer_orders : "tb_buyer_orders_ibfk_1"
+    tb_users ||--o| tb_carts : "fk_carts_user"
+    tbc_categories ||--o{ tbc_categories : "fk_superior_category"
+    tb_carts ||--o{ tbd_carts_items : "tbd_carts_items_ibfk_1"
+    tbd_products_users_providers }o--o{ tbd_carts_items : "tbd_carts_items_ibfk_2"
+    tbd_products_users_providers }o--o{ tbd_carts_items : "tbd_carts_items_ibfk_3"
+    tb_buyer_orders ||--o{ tbd_order_items : "tbd_order_items_ibfk_1"
+    tbd_products_users_providers }o--o{ tbd_order_items : "tbd_order_items_ibfk_2"
+    tbd_products_users_providers }o--o{ tbd_order_items : "tbd_order_items_ibfk_3"
+    tbc_categories ||--o{ tbd_products_categories : "fk_category_prod"
+    tb_products ||--o{ tbd_products_categories : "fk_product_cat"
+    tb_products ||--o{ tbd_products_users_providers : "fk_products2"
+    tb_users ||--o{ tbd_products_users_providers : "fk_user1"
+    tb_users ||--o{ tbd_user_payment_methods : "tbd_user_payment_methods_ibfk_1"
+    tbc_payment_methods_types ||--o{ tbd_user_payment_methods : "tbd_user_payment_methods_ibfk_2"
+    tb_products ||--o{ tbd_users_wishlist_products : "fk_products3"
+    tb_users ||--o{ tbd_users_wishlist_products : "fk_user2"
+
+%% Non-unique FK targets are many-valued; they do not prove one row or a composite provider-product association.
