@@ -1,5 +1,6 @@
+name: ExamenObed_240145
 version: '3.8'
- 
+
 services:
   postgres_obed:
     image: postgres:15-alpine
@@ -10,21 +11,22 @@ services:
       POSTGRES_PASSWORD: "240145"
       POSTGRES_DB: db_240145
     ports:
-      - "40145:5432"               # <--- Puerto 40145 reservado para PostgreSQL
+      - "0.0.0.0:40145:5432"
     volumes:
       - postgres_data_240145:/var/lib/postgresql/data
+    command: ["postgres", "-c", "listen_addresses=*"]
 
   mysql_obed:
     image: mysql:8.0
     container_name: mysql_240145
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: obed_root_password
+      MYSQL_ROOT_PASSWORD: "obed_root_password"
       MYSQL_DATABASE: db_240145
       MYSQL_USER: obed
       MYSQL_PASSWORD: "240145"
     ports:
-      - "40146:3306"               # <--- Puerto 40146 reservado para MySQL
+      - "0.0.0.0:40146:3306"
     volumes:
       - mysql_data_240145:/var/lib/mysql
 
@@ -36,9 +38,10 @@ services:
       PGADMIN_DEFAULT_EMAIL: 240145@utxicotepec.edu.mx
       PGADMIN_DEFAULT_PASSWORD: "240145"
     ports:
-      - "40147:80"                 # <--- Cambia 40145 por 40147 para pgAdmin
+      - "0.0.0.0:40147:80"
+    depends_on:
+      - postgres_obed
 
 volumes:
   postgres_data_240145:
   mysql_data_240145:
-  
