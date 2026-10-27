@@ -2,7 +2,7 @@ name: Deploy static content to Pages
 
 on:
   push:
-    branches: ["Practica03"]
+    branches: ["main", "Practica03"]
   workflow_dispatch:
 
 permissions:
