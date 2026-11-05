@@ -5,35 +5,29 @@
     "title": "Relaciones de la base db_test_7b",
     "locale": "es",
     "output": ".archify/respaldo5-diccionario-20261022-080200/relaciones-respaldo5.html",
-    "quality_profile": "standard",
-    "repository": {
-      "url": "https://github.com/Obed-Vargas/practicas_BDN_240145.git",
-      "provider": "github",
-      "link_mode": "web",
-      "revision": "3d83d5b9280629cae7c71c32268bb1140c6cc31b"
-    }
+    "quality_profile": "standard"
   },
   "layout": {
     "mode": "grid",
-    "gapX": 88,
-    "gapY": 30
+    "gapX": 70,
+    "gapY": 26
   },
   "entities": [
     {
       "id": "tb_buyer_orders",
       "label": "tb_buyer_orders",
-      "row": 1,
+      "tag": "ventas",
+      "row": 0,
       "col": 0,
-      "tag": "comercio",
       "attributes": [
         {
           "name": "ID",
-          "type": "int unsigned",
+          "type": "int",
           "key": "pk"
         },
         {
           "name": "seller_ID",
-          "type": "int unsigned",
+          "type": "int",
           "key": "fk",
           "references": "tb_users.ID"
         },
@@ -62,33 +56,26 @@
           "type": "datetime"
         }
       ],
-      "sources": [
-        {
-          "path": "Practicas03/backups/respaldo5.sql",
-          "line": 27,
-          "end_line": 41
-        }
-      ],
-      "width": 680
+      "width": 593
     },
     {
       "id": "tb_carts",
       "label": "tb_carts",
+      "tag": "ventas",
       "row": 1,
-      "col": 2,
-      "tag": "comercio",
+      "col": 0,
       "attributes": [
         {
           "name": "ID",
-          "type": "int unsigned",
+          "type": "int",
           "key": "pk"
         },
         {
           "name": "user_ID",
-          "type": "int unsigned",
+          "type": "int",
           "key": [
-            "fk",
-            "uk"
+            "uk",
+            "fk"
           ],
           "references": "tb_users.ID"
         },
@@ -105,20 +92,533 @@
           "type": "datetime"
         }
       ],
-      "sources": [
+      "width": 360
+    },
+    {
+      "id": "tb_shipments",
+      "label": "tb_shipments",
+      "tag": "ventas",
+      "row": 2,
+      "col": 0,
+      "attributes": [
         {
-          "path": "Practicas03/backups/respaldo5.sql",
-          "line": 147,
-          "end_line": 156
+          "name": "ID",
+          "type": "int",
+          "key": "pk"
+        },
+        {
+          "name": "buyer_order_ID",
+          "type": "int",
+          "key": "fk",
+          "references": "tb_buyer_orders.ID"
+        },
+        {
+          "name": "address_ID",
+          "type": "bigint",
+          "key": "fk",
+          "references": "tb_user_addresses.ID"
+        },
+        {
+          "name": "carrier",
+          "type": "varchar(100)",
+          "key": "uk"
+        },
+        {
+          "name": "tracking_number",
+          "type": "varchar(150)",
+          "key": "uk"
+        },
+        {
+          "name": "shipping_cost",
+          "type": "decimal(12,2)"
+        },
+        {
+          "name": "shipment_status",
+          "type": "enum('Pending','Preparing','Shipped','InTransit','Delivered','Failed','Returned')"
+        },
+        {
+          "name": "shipped_date",
+          "type": "datetime"
+        },
+        {
+          "name": "estimated_delivery_date",
+          "type": "datetime"
+        },
+        {
+          "name": "delivered_date",
+          "type": "datetime"
+        },
+        {
+          "name": "status",
+          "type": "bit(1)"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime"
         }
-      ]
+      ],
+      "width": 585
+    },
+    {
+      "id": "tbd_carts_items",
+      "label": "tbd_carts_items",
+      "tag": "ventas",
+      "row": 3,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "cart_ID",
+          "type": "int",
+          "key": [
+            "pk",
+            "fk"
+          ],
+          "references": "tb_carts.ID"
+        },
+        {
+          "name": "provider_ID",
+          "type": "int",
+          "key": [
+            "pk",
+            "fk"
+          ],
+          "references": "tbd_products_users_providers.user_ID"
+        },
+        {
+          "name": "product_ID",
+          "type": "int",
+          "key": [
+            "pk",
+            "fk"
+          ],
+          "references": "tbd_products_users_providers.product_ID"
+        },
+        {
+          "name": "quantity",
+          "type": "int"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime"
+        }
+      ],
+      "width": 360
+    },
+    {
+      "id": "tbd_order_items",
+      "label": "tbd_order_items",
+      "tag": "ventas",
+      "row": 4,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int",
+          "key": "pk"
+        },
+        {
+          "name": "seller_order_ID",
+          "type": "int",
+          "key": "fk",
+          "references": "tb_buyer_orders.ID"
+        },
+        {
+          "name": "product_ID",
+          "type": "int",
+          "key": "fk",
+          "references": "tbd_products_users_providers.product_ID"
+        },
+        {
+          "name": "provider_ID",
+          "type": "int",
+          "key": "fk",
+          "references": "tbd_products_users_providers.user_ID"
+        },
+        {
+          "name": "product_name",
+          "type": "varchar(255)"
+        },
+        {
+          "name": "quantity",
+          "type": "int"
+        },
+        {
+          "name": "unit_price",
+          "type": "decimal(12,2)"
+        },
+        {
+          "name": "subtotal",
+          "type": "decimal(12,2)"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime"
+        }
+      ],
+      "width": 360
+    },
+    {
+      "id": "tb_cancellations",
+      "label": "tb_cancellations",
+      "tag": "postventa",
+      "row": 0,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int",
+          "key": "pk"
+        },
+        {
+          "name": "buyer_order_ID",
+          "type": "int",
+          "key": "fk",
+          "references": "tb_buyer_orders.ID"
+        },
+        {
+          "name": "user_ID",
+          "type": "int",
+          "key": "fk",
+          "references": "tb_users.ID"
+        },
+        {
+          "name": "cancellation_reason",
+          "type": "varchar(500)"
+        },
+        {
+          "name": "cancellation_status",
+          "type": "enum('Requested','Approved','Rejected','Completed')"
+        },
+        {
+          "name": "requested_date",
+          "type": "datetime"
+        },
+        {
+          "name": "resolved_date",
+          "type": "datetime"
+        },
+        {
+          "name": "resolution_notes",
+          "type": "text"
+        },
+        {
+          "name": "status",
+          "type": "bit(1)"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime"
+        }
+      ],
+      "width": 459
+    },
+    {
+      "id": "tb_returns",
+      "label": "tb_returns",
+      "tag": "postventa",
+      "row": 1,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int",
+          "key": "pk"
+        },
+        {
+          "name": "buyer_order_ID",
+          "type": "int",
+          "key": "fk",
+          "references": "tb_buyer_orders.ID"
+        },
+        {
+          "name": "order_item_ID",
+          "type": "int",
+          "key": "fk",
+          "references": "tbd_order_items.ID"
+        },
+        {
+          "name": "user_ID",
+          "type": "int",
+          "key": "fk",
+          "references": "tb_users.ID"
+        },
+        {
+          "name": "quantity",
+          "type": "int"
+        },
+        {
+          "name": "return_reason",
+          "type": "varchar(500)"
+        },
+        {
+          "name": "return_status",
+          "type": "enum('Requested','Authorized','Rejected','InTransit','Received','Inspected','Completed')"
+        },
+        {
+          "name": "requested_date",
+          "type": "datetime"
+        },
+        {
+          "name": "received_date",
+          "type": "datetime"
+        },
+        {
+          "name": "resolved_date",
+          "type": "datetime"
+        },
+        {
+          "name": "resolution_notes",
+          "type": "text"
+        },
+        {
+          "name": "status",
+          "type": "bit(1)"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime"
+        }
+      ],
+      "width": 608
+    },
+    {
+      "id": "tb_user_addresses",
+      "label": "tb_user_addresses",
+      "tag": "postventa",
+      "row": 2,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "bigint",
+          "key": "pk"
+        },
+        {
+          "name": "user_ID",
+          "type": "int",
+          "key": "fk",
+          "references": "tb_users.ID"
+        },
+        {
+          "name": "address_label",
+          "type": "varchar(100)"
+        },
+        {
+          "name": "recipient_name",
+          "type": "varchar(150)"
+        },
+        {
+          "name": "recipient_phone",
+          "type": "varchar(25)"
+        },
+        {
+          "name": "delivery_instructions",
+          "type": "varchar(500)"
+        },
+        {
+          "name": "latitude",
+          "type": "decimal(10,7)"
+        },
+        {
+          "name": "longitude",
+          "type": "decimal(10,7)"
+        },
+        {
+          "name": "is_default",
+          "type": "bit(1)"
+        },
+        {
+          "name": "status",
+          "type": "bit(1)"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime"
+        }
+      ],
+      "width": 360
+    },
+    {
+      "id": "tbd_address_components",
+      "label": "tbd_address_components",
+      "tag": "postventa",
+      "row": 3,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "bigint",
+          "key": [
+            "pk",
+            "uk"
+          ]
+        },
+        {
+          "name": "address_ID",
+          "type": "bigint",
+          "key": [
+            "uk",
+            "fk"
+          ],
+          "references": "tb_user_addresses.ID"
+        },
+        {
+          "name": "value",
+          "type": "varchar(255)"
+        },
+        {
+          "name": "component_type",
+          "type": "varchar(50)"
+        },
+        {
+          "name": "status",
+          "type": "bit(1)"
+        },
+        {
+          "name": "address_sup_id",
+          "type": "bigint",
+          "key": "fk",
+          "references": "tbd_address_components.ID"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime"
+        }
+      ],
+      "width": 360
+    },
+    {
+      "id": "tbd_cancellation_items",
+      "label": "tbd_cancellation_items",
+      "tag": "postventa",
+      "row": 4,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int",
+          "key": "pk"
+        },
+        {
+          "name": "cancellation_ID",
+          "type": "int",
+          "key": "fk",
+          "references": "tb_cancellations.ID"
+        },
+        {
+          "name": "order_item_ID",
+          "type": "int",
+          "key": "fk",
+          "references": "tbd_order_items.ID"
+        },
+        {
+          "name": "quantity",
+          "type": "int"
+        },
+        {
+          "name": "unit_amount",
+          "type": "decimal(12,2)"
+        },
+        {
+          "name": "item_reason",
+          "type": "varchar(500)"
+        },
+        {
+          "name": "status",
+          "type": "bit(1)"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime"
+        }
+      ],
+      "width": 360
+    },
+    {
+      "id": "tbd_return_items",
+      "label": "tbd_return_items",
+      "tag": "postventa",
+      "row": 5,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int",
+          "key": "pk"
+        },
+        {
+          "name": "return_ID",
+          "type": "int",
+          "key": "fk",
+          "references": "tb_returns.ID"
+        },
+        {
+          "name": "order_item_ID",
+          "type": "int",
+          "key": "fk",
+          "references": "tbd_order_items.ID"
+        },
+        {
+          "name": "quantity",
+          "type": "int"
+        },
+        {
+          "name": "unit_amount",
+          "type": "decimal(12,2)"
+        },
+        {
+          "name": "item_reason",
+          "type": "varchar(500)"
+        },
+        {
+          "name": "item_condition",
+          "type": "enum('Unknown','New','Opened','Damaged')"
+        },
+        {
+          "name": "status",
+          "type": "bit(1)"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime"
+        }
+      ],
+      "width": 374
     },
     {
       "id": "tb_logs",
       "label": "tb_logs",
-      "row": 2,
-      "col": 1,
-      "tag": "cuentas",
+      "tag": "usuarios",
+      "row": 0,
+      "col": 2,
       "attributes": [
         {
           "name": "ID",
@@ -150,47 +650,56 @@
           "type": "bit(1)"
         }
       ],
-      "sources": [
-        {
-          "path": "Practicas03/backups/respaldo5.sql",
-          "line": 175,
-          "end_line": 184
-        }
-      ],
-      "width": 420
+      "width": 375
     },
     {
-      "id": "tb_products",
-      "label": "tb_products",
-      "row": 0,
-      "col": 0,
-      "tag": "catalogo",
+      "id": "tb_people",
+      "label": "tb_people",
+      "tag": "usuarios",
+      "row": 1,
+      "col": 2,
       "attributes": [
         {
-          "name": "ID",
-          "type": "int unsigned",
+          "name": "person_ID",
+          "type": "bigint",
           "key": "pk"
         },
         {
-          "name": "SKU",
-          "type": "varchar(50)",
-          "key": "uk"
+          "name": "user_ID",
+          "type": "int",
+          "key": [
+            "uk",
+            "fk"
+          ],
+          "references": "tb_users.ID"
         },
         {
-          "name": "name",
-          "type": "varchar(250)"
+          "name": "courtesy_title",
+          "type": "varchar(50)"
         },
         {
-          "name": "description",
-          "type": "text"
+          "name": "given_names",
+          "type": "varchar(150)"
         },
         {
-          "name": "current_price",
-          "type": "decimal(10,2)"
+          "name": "family_names",
+          "type": "varchar(150)"
         },
         {
-          "name": "current_stock",
-          "type": "int unsigned"
+          "name": "birth_date",
+          "type": "date"
+        },
+        {
+          "name": "gender",
+          "type": "enum('hombre','mujer','Prefiero no decirlo')"
+        },
+        {
+          "name": "country_code",
+          "type": "char(2)"
+        },
+        {
+          "name": "phone",
+          "type": "varchar(25)"
         },
         {
           "name": "status",
@@ -205,24 +714,18 @@
           "type": "datetime"
         }
       ],
-      "sources": [
-        {
-          "path": "Practicas03/backups/respaldo5.sql",
-          "line": 205,
-          "end_line": 217
-        }
-      ]
+      "width": 360
     },
     {
       "id": "tb_users",
       "label": "tb_users",
+      "tag": "usuarios",
       "row": 2,
-      "col": 0,
-      "tag": "cuentas",
+      "col": 2,
       "attributes": [
         {
           "name": "ID",
-          "type": "int unsigned",
+          "type": "int",
           "key": "pk"
         },
         {
@@ -256,40 +759,61 @@
           "type": "bit(1)"
         }
       ],
-      "sources": [
-        {
-          "path": "Practicas03/backups/respaldo5.sql",
-          "line": 350,
-          "end_line": 362
-        }
-      ]
+      "width": 360
     },
     {
-      "id": "tbc_categories",
-      "label": "tbc_categories",
+      "id": "tb_payment_methods",
+      "label": "tb_payment_methods",
+      "tag": "pagos",
       "row": 0,
-      "col": 1,
-      "tag": "catalogo",
+      "col": 3,
       "attributes": [
         {
           "name": "ID",
-          "type": "int unsigned",
+          "type": "int",
           "key": "pk"
         },
         {
-          "name": "name",
-          "type": "varchar(120)",
-          "key": "uk"
-        },
-        {
-          "name": "description",
-          "type": "text"
-        },
-        {
-          "name": "sup_id_category",
-          "type": "int unsigned",
+          "name": "buyer_order_ID",
+          "type": "int",
           "key": "fk",
-          "references": "tbc_categories.ID"
+          "references": "tb_buyer_orders.ID"
+        },
+        {
+          "name": "user_ID",
+          "type": "int",
+          "key": "fk",
+          "references": "tb_users.ID"
+        },
+        {
+          "name": "payment_method_type_ID",
+          "type": "int",
+          "key": "fk",
+          "references": "tbc_payment_methods_types.ID"
+        },
+        {
+          "name": "payment_reference",
+          "type": "varchar(150)"
+        },
+        {
+          "name": "amount",
+          "type": "decimal(12,2)"
+        },
+        {
+          "name": "currency",
+          "type": "char(3)"
+        },
+        {
+          "name": "payment_status",
+          "type": "enum('Pending','Authorized','Paid','Failed','Cancelled','Refunded')"
+        },
+        {
+          "name": "payment_date",
+          "type": "datetime"
+        },
+        {
+          "name": "notes",
+          "type": "text"
         },
         {
           "name": "status",
@@ -304,24 +828,195 @@
           "type": "datetime"
         }
       ],
-      "sources": [
+      "width": 509
+    },
+    {
+      "id": "tb_payment_transactions",
+      "label": "tb_payment_transactions",
+      "tag": "pagos",
+      "row": 1,
+      "col": 3,
+      "attributes": [
         {
-          "path": "Practicas03/backups/respaldo5.sql",
-          "line": 492,
-          "end_line": 504
+          "name": "ID",
+          "type": "int",
+          "key": "pk"
+        },
+        {
+          "name": "payment_ID",
+          "type": "int",
+          "key": "fk",
+          "references": "tb_payments.ID"
+        },
+        {
+          "name": "event_type",
+          "type": "enum('Created','Authorized','Captured','Failed','Refunded','PartiallyRefunded')"
+        },
+        {
+          "name": "amount",
+          "type": "decimal(12,2)"
+        },
+        {
+          "name": "event_reference",
+          "type": "varchar(150)"
+        },
+        {
+          "name": "remarks",
+          "type": "text"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime"
         }
-      ]
+      ],
+      "width": 545
+    },
+    {
+      "id": "tb_payments",
+      "label": "tb_payments",
+      "tag": "pagos",
+      "row": 2,
+      "col": 3,
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int",
+          "key": "pk"
+        },
+        {
+          "name": "buyer_order_ID",
+          "type": "int",
+          "key": "fk",
+          "references": "tb_buyer_orders.ID"
+        },
+        {
+          "name": "amount",
+          "type": "decimal(12,2)"
+        },
+        {
+          "name": "currency",
+          "type": "char(3)"
+        },
+        {
+          "name": "payment_method",
+          "type": "enum('Card','SPEI','Transfer','Cash')"
+        },
+        {
+          "name": "provider",
+          "type": "varchar(50)",
+          "key": "uk"
+        },
+        {
+          "name": "provider_reference",
+          "type": "varchar(150)",
+          "key": "uk"
+        },
+        {
+          "name": "payment_status",
+          "type": "enum('Pending','Authorized','Paid','Failed','Refunded','PartiallyRefunded')"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime"
+        },
+        {
+          "name": "paid_date",
+          "type": "datetime"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime"
+        }
+      ],
+      "width": 549
+    },
+    {
+      "id": "tb_refunds",
+      "label": "tb_refunds",
+      "tag": "pagos",
+      "row": 3,
+      "col": 3,
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int",
+          "key": "pk"
+        },
+        {
+          "name": "payment_ID",
+          "type": "int",
+          "key": "fk",
+          "references": "tb_payments.ID"
+        },
+        {
+          "name": "cancellation_ID",
+          "type": "int",
+          "key": "fk",
+          "references": "tb_cancellations.ID"
+        },
+        {
+          "name": "return_ID",
+          "type": "int",
+          "key": "fk",
+          "references": "tb_returns.ID"
+        },
+        {
+          "name": "amount",
+          "type": "decimal(12,2)"
+        },
+        {
+          "name": "currency",
+          "type": "char(3)"
+        },
+        {
+          "name": "refund_reason",
+          "type": "varchar(500)"
+        },
+        {
+          "name": "refund_status",
+          "type": "enum('Requested','Approved','Processing','Completed','Rejected','Failed')"
+        },
+        {
+          "name": "provider_reference",
+          "type": "varchar(150)"
+        },
+        {
+          "name": "requested_date",
+          "type": "datetime"
+        },
+        {
+          "name": "processed_date",
+          "type": "datetime"
+        },
+        {
+          "name": "resolution_notes",
+          "type": "text"
+        },
+        {
+          "name": "status",
+          "type": "bit(1)"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime"
+        }
+      ],
+      "width": 533
     },
     {
       "id": "tbc_payment_methods_types",
       "label": "tbc_payment_methods_types",
-      "row": 3,
-      "col": 0,
       "tag": "pagos",
+      "row": 4,
+      "col": 3,
       "attributes": [
         {
           "name": "ID",
-          "type": "int unsigned",
+          "type": "int",
           "key": "pk"
         },
         {
@@ -346,246 +1041,29 @@
           "type": "datetime"
         }
       ],
-      "sources": [
-        {
-          "path": "Practicas03/backups/respaldo5.sql",
-          "line": 630,
-          "end_line": 639
-        }
-      ]
-    },
-    {
-      "id": "tbd_carts_items",
-      "label": "tbd_carts_items",
-      "row": 1,
-      "col": 3,
-      "tag": "comercio",
-      "attributes": [
-        {
-          "name": "cart_ID",
-          "type": "int unsigned",
-          "key": [
-            "pk",
-            "fk"
-          ],
-          "references": "tb_carts.ID"
-        },
-        {
-          "name": "provider_ID",
-          "type": "int unsigned",
-          "key": [
-            "pk",
-            "fk"
-          ],
-          "references": "tbd_products_users_providers.user_ID"
-        },
-        {
-          "name": "product_ID",
-          "type": "int unsigned",
-          "key": [
-            "pk",
-            "fk"
-          ],
-          "references": "tbd_products_users_providers.product_ID"
-        },
-        {
-          "name": "quantity",
-          "type": "int unsigned"
-        },
-        {
-          "name": "creation_date",
-          "type": "datetime"
-        }
-      ],
-      "sources": [
-        {
-          "path": "Practicas03/backups/respaldo5.sql",
-          "line": 737,
-          "end_line": 750
-        }
-      ]
-    },
-    {
-      "id": "tbd_order_items",
-      "label": "tbd_order_items",
-      "row": 1,
-      "col": 1,
-      "tag": "comercio",
-      "attributes": [
-        {
-          "name": "ID",
-          "type": "int unsigned",
-          "key": "pk"
-        },
-        {
-          "name": "seller_order_ID",
-          "type": "int unsigned",
-          "key": "fk",
-          "references": "tb_buyer_orders.ID"
-        },
-        {
-          "name": "product_ID",
-          "type": "int unsigned",
-          "key": "fk",
-          "references": "tbd_products_users_providers.product_ID"
-        },
-        {
-          "name": "provider_ID",
-          "type": "int unsigned",
-          "key": "fk",
-          "references": "tbd_products_users_providers.user_ID"
-        },
-        {
-          "name": "product_name",
-          "type": "varchar(255)"
-        },
-        {
-          "name": "quantity",
-          "type": "int unsigned"
-        },
-        {
-          "name": "unit_price",
-          "type": "decimal(12,2)"
-        },
-        {
-          "name": "subtotal",
-          "type": "decimal(12,2)"
-        },
-        {
-          "name": "creation_date",
-          "type": "datetime"
-        }
-      ],
-      "sources": [
-        {
-          "path": "Practicas03/backups/respaldo5.sql",
-          "line": 847,
-          "end_line": 866
-        }
-      ]
-    },
-    {
-      "id": "tbd_products_categories",
-      "label": "tbd_products_categories",
-      "row": 0,
-      "col": 2,
-      "tag": "catalogo",
-      "attributes": [
-        {
-          "name": "category_ID",
-          "type": "int unsigned",
-          "key": [
-            "pk",
-            "fk"
-          ],
-          "references": "tbc_categories.ID"
-        },
-        {
-          "name": "product_ID",
-          "type": "int unsigned",
-          "key": [
-            "pk",
-            "fk"
-          ],
-          "references": "tb_products.ID"
-        },
-        {
-          "name": "status",
-          "type": "bit(1)"
-        },
-        {
-          "name": "creation_date",
-          "type": "datetime"
-        },
-        {
-          "name": "last_update",
-          "type": "datetime"
-        }
-      ],
-      "sources": [
-        {
-          "path": "Practicas03/backups/respaldo5.sql",
-          "line": 975,
-          "end_line": 985
-        }
-      ]
-    },
-    {
-      "id": "tbd_products_users_providers",
-      "label": "tbd_products_users_providers",
-      "row": 0,
-      "col": 3,
-      "tag": "catalogo",
-      "attributes": [
-        {
-          "name": "user_ID",
-          "type": "int unsigned",
-          "key": [
-            "pk",
-            "fk"
-          ],
-          "references": "tb_users.ID"
-        },
-        {
-          "name": "product_ID",
-          "type": "int unsigned",
-          "key": [
-            "pk",
-            "fk"
-          ],
-          "references": "tb_products.ID"
-        },
-        {
-          "name": "type_ownership",
-          "type": "enum('Owner','Reseller','Distributor')"
-        },
-        {
-          "name": "status",
-          "type": "bit(1)"
-        },
-        {
-          "name": "avalaible_date",
-          "type": "datetime"
-        },
-        {
-          "name": "creation_date",
-          "type": "datetime"
-        },
-        {
-          "name": "last_update",
-          "type": "datetime"
-        }
-      ],
-      "sources": [
-        {
-          "path": "Practicas03/backups/respaldo5.sql",
-          "line": 1074,
-          "end_line": 1086
-        }
-      ],
-      "width": 420
+      "width": 360
     },
     {
       "id": "tbd_user_payment_methods",
       "label": "tbd_user_payment_methods",
-      "row": 3,
-      "col": 1,
       "tag": "pagos",
+      "row": 5,
+      "col": 3,
       "attributes": [
         {
           "name": "ID",
-          "type": "bigint unsigned",
+          "type": "bigint",
           "key": "pk"
         },
         {
           "name": "user_ID",
-          "type": "int unsigned",
+          "type": "int",
           "key": "fk",
           "references": "tb_users.ID"
         },
         {
           "name": "payment_method_type_ID",
-          "type": "int unsigned",
+          "type": "int",
           "key": "fk",
           "references": "tbc_payment_methods_types.ID"
         },
@@ -624,34 +1102,117 @@
           "type": "datetime"
         }
       ],
-      "sources": [
-        {
-          "path": "Practicas03/backups/respaldo5.sql",
-          "line": 1183,
-          "end_line": 1201
-        }
-      ],
-      "width": 300
+      "width": 360
     },
     {
-      "id": "tbd_users_wishlist_products",
-      "label": "tbd_users_wishlist_products",
-      "row": 1,
+      "id": "tb_products",
+      "label": "tb_products",
+      "tag": "catalogo",
+      "row": 0,
       "col": 4,
-      "tag": "comercio",
       "attributes": [
         {
-          "name": "user_ID",
-          "type": "int unsigned",
+          "name": "ID",
+          "type": "int",
+          "key": "pk"
+        },
+        {
+          "name": "SKU",
+          "type": "varchar(50)",
+          "key": "uk"
+        },
+        {
+          "name": "name",
+          "type": "varchar(250)"
+        },
+        {
+          "name": "description",
+          "type": "text"
+        },
+        {
+          "name": "current_price",
+          "type": "decimal(10,2)"
+        },
+        {
+          "name": "current_stock",
+          "type": "int"
+        },
+        {
+          "name": "status",
+          "type": "bit(1)"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime"
+        }
+      ],
+      "width": 360
+    },
+    {
+      "id": "tbc_categories",
+      "label": "tbc_categories",
+      "tag": "catalogo",
+      "row": 1,
+      "col": 4,
+      "attributes": [
+        {
+          "name": "ID",
+          "type": "int",
+          "key": "pk"
+        },
+        {
+          "name": "name",
+          "type": "varchar(120)",
+          "key": "uk"
+        },
+        {
+          "name": "description",
+          "type": "text"
+        },
+        {
+          "name": "sup_id_category",
+          "type": "int",
+          "key": "fk",
+          "references": "tbc_categories.ID"
+        },
+        {
+          "name": "status",
+          "type": "bit(1)"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime"
+        }
+      ],
+      "width": 360
+    },
+    {
+      "id": "tbd_products_categories",
+      "label": "tbd_products_categories",
+      "tag": "catalogo",
+      "row": 2,
+      "col": 4,
+      "attributes": [
+        {
+          "name": "category_ID",
+          "type": "int",
           "key": [
             "pk",
             "fk"
           ],
-          "references": "tb_users.ID"
+          "references": "tbc_categories.ID"
         },
         {
           "name": "product_ID",
-          "type": "int unsigned",
+          "type": "int",
           "key": [
             "pk",
             "fk"
@@ -671,13 +1232,95 @@
           "type": "datetime"
         }
       ],
-      "sources": [
+      "width": 360
+    },
+    {
+      "id": "tbd_products_users_providers",
+      "label": "tbd_products_users_providers",
+      "tag": "catalogo",
+      "row": 3,
+      "col": 4,
+      "attributes": [
         {
-          "path": "Practicas03/backups/respaldo5.sql",
-          "line": 1316,
-          "end_line": 1326
+          "name": "user_ID",
+          "type": "int",
+          "key": [
+            "pk",
+            "fk"
+          ],
+          "references": "tb_users.ID"
+        },
+        {
+          "name": "product_ID",
+          "type": "int",
+          "key": [
+            "pk",
+            "fk"
+          ],
+          "references": "tb_products.ID"
+        },
+        {
+          "name": "type_ownership",
+          "type": "enum('Owner','Reseller','Distributor')"
+        },
+        {
+          "name": "status",
+          "type": "bit(1)"
+        },
+        {
+          "name": "avalaible_date",
+          "type": "datetime"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime"
         }
-      ]
+      ],
+      "width": 364
+    },
+    {
+      "id": "tbd_users_wishlist_products",
+      "label": "tbd_users_wishlist_products",
+      "tag": "catalogo",
+      "row": 4,
+      "col": 4,
+      "attributes": [
+        {
+          "name": "user_ID",
+          "type": "int",
+          "key": [
+            "pk",
+            "fk"
+          ],
+          "references": "tb_users.ID"
+        },
+        {
+          "name": "product_ID",
+          "type": "int",
+          "key": [
+            "pk",
+            "fk"
+          ],
+          "references": "tb_products.ID"
+        },
+        {
+          "name": "status",
+          "type": "bit(1)"
+        },
+        {
+          "name": "creation_date",
+          "type": "datetime"
+        },
+        {
+          "name": "last_update",
+          "type": "datetime"
+        }
+      ],
+      "width": 360
     }
   ],
   "relationships": [
@@ -687,15 +1330,191 @@
       "to": "tb_users",
       "fromCardinality": "many",
       "toCardinality": "one",
-      "label": "tb_buyer_orders_ibfk_1: seller_ID → ID"
+      "label": "tb_buyer_orders_ibfk_1: seller_ID ? ID"
+    },
+    {
+      "id": "fk_cancellations_order",
+      "from": "tb_cancellations",
+      "to": "tb_buyer_orders",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "label": "fk_cancellations_order: buyer_order_ID ? ID"
+    },
+    {
+      "id": "fk_cancellations_user",
+      "from": "tb_cancellations",
+      "to": "tb_users",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "label": "fk_cancellations_user: user_ID ? ID"
     },
     {
       "id": "fk_carts_user",
       "from": "tb_carts",
       "to": "tb_users",
-      "fromCardinality": "one",
+      "fromCardinality": "many",
       "toCardinality": "one",
-      "label": "fk_carts_user: user_ID → ID"
+      "label": "fk_carts_user: user_ID ? ID"
+    },
+    {
+      "id": "fk_payment_methods_order",
+      "from": "tb_payment_methods",
+      "to": "tb_buyer_orders",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "label": "fk_payment_methods_order: buyer_order_ID ? ID"
+    },
+    {
+      "id": "fk_payment_methods_type",
+      "from": "tb_payment_methods",
+      "to": "tbc_payment_methods_types",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "label": "fk_payment_methods_type: payment_method_type_ID ? ID"
+    },
+    {
+      "id": "fk_payment_methods_user",
+      "from": "tb_payment_methods",
+      "to": "tb_users",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "label": "fk_payment_methods_user: user_ID ? ID"
+    },
+    {
+      "id": "fk_transactions_payments",
+      "from": "tb_payment_transactions",
+      "to": "tb_payments",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "label": "fk_transactions_payments: payment_ID ? ID"
+    },
+    {
+      "id": "fk_payments_buyer_orders",
+      "from": "tb_payments",
+      "to": "tb_buyer_orders",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "label": "fk_payments_buyer_orders: buyer_order_ID ? ID"
+    },
+    {
+      "id": "fk_people_users",
+      "from": "tb_people",
+      "to": "tb_users",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "label": "fk_people_users: user_ID ? ID"
+    },
+    {
+      "id": "fk_refunds_cancellation",
+      "from": "tb_refunds",
+      "to": "tb_cancellations",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "label": "fk_refunds_cancellation: cancellation_ID ? ID"
+    },
+    {
+      "id": "fk_refunds_payment",
+      "from": "tb_refunds",
+      "to": "tb_payments",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "label": "fk_refunds_payment: payment_ID ? ID"
+    },
+    {
+      "id": "fk_refunds_return",
+      "from": "tb_refunds",
+      "to": "tb_returns",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "label": "fk_refunds_return: return_ID ? ID"
+    },
+    {
+      "id": "fk_returns_item",
+      "from": "tb_returns",
+      "to": "tbd_order_items",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "label": "fk_returns_item: order_item_ID ? ID"
+    },
+    {
+      "id": "fk_returns_order",
+      "from": "tb_returns",
+      "to": "tb_buyer_orders",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "label": "fk_returns_order: buyer_order_ID ? ID"
+    },
+    {
+      "id": "fk_returns_user",
+      "from": "tb_returns",
+      "to": "tb_users",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "label": "fk_returns_user: user_ID ? ID"
+    },
+    {
+      "id": "fk_shipments_address",
+      "from": "tb_shipments",
+      "to": "tb_user_addresses",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "label": "fk_shipments_address: address_ID ? ID"
+    },
+    {
+      "id": "fk_shipments_order",
+      "from": "tb_shipments",
+      "to": "tb_buyer_orders",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "label": "fk_shipments_order: buyer_order_ID ? ID"
+    },
+    {
+      "id": "fk_addresses_users",
+      "from": "tb_user_addresses",
+      "to": "tb_users",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "label": "fk_addresses_users: user_ID ? ID"
+    },
+    {
+      "id": "fk_superior_category",
+      "from": "tbc_categories",
+      "to": "tbc_categories",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "label": "fk_superior_category: sup_id_category ? ID"
+    },
+    {
+      "id": "fk_component_address",
+      "from": "tbd_address_components",
+      "to": "tb_user_addresses",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "label": "fk_component_address: address_ID ? ID"
+    },
+    {
+      "id": "fk_component_parent",
+      "from": "tbd_address_components",
+      "to": "tbd_address_components",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "label": "fk_component_parent: address_ID, address_sup_id ? address_ID, ID"
+    },
+    {
+      "id": "fk_cancellation_items_cancellation",
+      "from": "tbd_cancellation_items",
+      "to": "tb_cancellations",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "label": "fk_cancellation_items_cancellation: cancellation_ID ? ID"
+    },
+    {
+      "id": "fk_cancellation_items_order_item",
+      "from": "tbd_cancellation_items",
+      "to": "tbd_order_items",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "label": "fk_cancellation_items_order_item: order_item_ID ? ID"
     },
     {
       "id": "tbd_carts_items_ibfk_1",
@@ -703,23 +1522,23 @@
       "to": "tb_carts",
       "fromCardinality": "many",
       "toCardinality": "one",
-      "label": "tbd_carts_items_ibfk_1: cart_ID → ID"
+      "label": "tbd_carts_items_ibfk_1: cart_ID ? ID"
     },
     {
       "id": "tbd_carts_items_ibfk_2",
       "from": "tbd_carts_items",
       "to": "tbd_products_users_providers",
       "fromCardinality": "many",
-      "toCardinality": "many",
-      "label": "tbd_carts_items_ibfk_2: provider_ID → user_ID"
+      "toCardinality": "one",
+      "label": "tbd_carts_items_ibfk_2: provider_ID ? user_ID"
     },
     {
       "id": "tbd_carts_items_ibfk_3",
       "from": "tbd_carts_items",
       "to": "tbd_products_users_providers",
       "fromCardinality": "many",
-      "toCardinality": "many",
-      "label": "tbd_carts_items_ibfk_3: provider_ID → user_ID"
+      "toCardinality": "one",
+      "label": "tbd_carts_items_ibfk_3: product_ID ? product_ID"
     },
     {
       "id": "tbd_order_items_ibfk_1",
@@ -727,23 +1546,23 @@
       "to": "tb_buyer_orders",
       "fromCardinality": "many",
       "toCardinality": "one",
-      "label": "tbd_order_items_ibfk_1: seller_order_ID → ID"
+      "label": "tbd_order_items_ibfk_1: seller_order_ID ? ID"
     },
     {
       "id": "tbd_order_items_ibfk_2",
       "from": "tbd_order_items",
       "to": "tbd_products_users_providers",
       "fromCardinality": "many",
-      "toCardinality": "many",
-      "label": "tbd_order_items_ibfk_2: product_ID → product_ID"
+      "toCardinality": "one",
+      "label": "tbd_order_items_ibfk_2: product_ID ? product_ID"
     },
     {
       "id": "tbd_order_items_ibfk_3",
       "from": "tbd_order_items",
       "to": "tbd_products_users_providers",
       "fromCardinality": "many",
-      "toCardinality": "many",
-      "label": "tbd_order_items_ibfk_3: product_ID → product_ID"
+      "toCardinality": "one",
+      "label": "tbd_order_items_ibfk_3: provider_ID ? user_ID"
     },
     {
       "id": "fk_category_prod",
@@ -751,7 +1570,7 @@
       "to": "tbc_categories",
       "fromCardinality": "many",
       "toCardinality": "one",
-      "label": "fk_category_prod: category_ID → ID"
+      "label": "fk_category_prod: category_ID ? ID"
     },
     {
       "id": "fk_product_cat",
@@ -759,7 +1578,7 @@
       "to": "tb_products",
       "fromCardinality": "many",
       "toCardinality": "one",
-      "label": "fk_product_cat: product_ID → ID"
+      "label": "fk_product_cat: product_ID ? ID"
     },
     {
       "id": "fk_products2",
@@ -767,7 +1586,7 @@
       "to": "tb_products",
       "fromCardinality": "many",
       "toCardinality": "one",
-      "label": "fk_products2: product_ID → ID"
+      "label": "fk_products2: product_ID ? ID"
     },
     {
       "id": "fk_user1",
@@ -775,7 +1594,23 @@
       "to": "tb_users",
       "fromCardinality": "many",
       "toCardinality": "one",
-      "label": "fk_user1: user_ID → ID"
+      "label": "fk_user1: user_ID ? ID"
+    },
+    {
+      "id": "fk_return_items_order_item",
+      "from": "tbd_return_items",
+      "to": "tbd_order_items",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "label": "fk_return_items_order_item: order_item_ID ? ID"
+    },
+    {
+      "id": "fk_return_items_return",
+      "from": "tbd_return_items",
+      "to": "tb_returns",
+      "fromCardinality": "many",
+      "toCardinality": "one",
+      "label": "fk_return_items_return: return_ID ? ID"
     },
     {
       "id": "tbd_user_payment_methods_ibfk_1",
@@ -783,7 +1618,7 @@
       "to": "tb_users",
       "fromCardinality": "many",
       "toCardinality": "one",
-      "label": "tbd_user_payment_methods_ibfk_1: user_ID → ID"
+      "label": "tbd_user_payment_methods_ibfk_1: user_ID ? ID"
     },
     {
       "id": "tbd_user_payment_methods_ibfk_2",
@@ -791,7 +1626,7 @@
       "to": "tbc_payment_methods_types",
       "fromCardinality": "many",
       "toCardinality": "one",
-      "label": "tbd_user_payment_methods_ibfk_2: payment_method_type_ID → ID"
+      "label": "tbd_user_payment_methods_ibfk_2: payment_method_type_ID ? ID"
     },
     {
       "id": "fk_products3",
@@ -799,7 +1634,7 @@
       "to": "tb_products",
       "fromCardinality": "many",
       "toCardinality": "one",
-      "label": "fk_products3: product_ID → ID"
+      "label": "fk_products3: product_ID ? ID"
     },
     {
       "id": "fk_user2",
@@ -807,17 +1642,7 @@
       "to": "tb_users",
       "fromCardinality": "many",
       "toCardinality": "one",
-      "label": "fk_user2: user_ID → ID"
-    }
-  ],
-  "cards": [
-    {
-      "dot": "amber",
-      "title": "Jerarquía de categorías",
-      "items": [
-        "La FK fk_superior_category enlaza tbc_categories.sup_id_category con tbc_categories.ID.",
-        "La columna es opcional (NULL permitido); el vínculo recursivo se detalla en el diccionario y Mermaid."
-      ]
+      "label": "fk_user2: user_ID ? ID"
     }
   ]
 }
