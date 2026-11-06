@@ -1,0 +1,333 @@
+{
+  "schemaVersion": 1,
+  "ok": false,
+  "command": "finalize",
+  "status": "fail",
+  "type": "erd",
+  "quality": "standard",
+  "startedAt": "2026-10-22T14:10:01.208Z",
+  "specification": {
+    "path": "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/candidate.json",
+    "sha256": "d5ea6ec101e55d65adceb3cafc6c8ba9c3b5fd6d28c54a92b4eb2aceb49d1707",
+    "bytes": 17804
+  },
+  "artifact": {
+    "path": "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/relaciones-respaldo5.html",
+    "sha256": "3c63b1d669872c307fe0890cd80d6f20f2adf6edbf4a75ec440c701adbb3683c",
+    "bytes": 900943
+  },
+  "stages": {
+    "validate": {
+      "status": "fail",
+      "exitCode": 1,
+      "durationMs": null,
+      "command": [
+        "/usr/local/bin/node",
+        "/Users/imac-02/.agents/skills/archify/bin/archify.mjs",
+        "deliver",
+        "erd",
+        "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/candidate.json",
+        "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/relaciones-respaldo5.html",
+        "--quality",
+        "standard",
+        "--repo-root",
+        "/Users/imac-02/practicas_BDN_240145",
+        "--json"
+      ],
+      "receipt": {
+        "schemaVersion": 1,
+        "ok": false,
+        "command": "deliver",
+        "receiptId": "cb70f824-fd5a-4b3d-9940-14c543acd1af",
+        "stage": "render",
+        "type": "erd",
+        "input": "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/candidate.json",
+        "output": "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/relaciones-respaldo5.html",
+        "error": "Entity-relationship layout validation failed:\n- [clean-flow/edge-through-node] erd relationships[0] id \"tb_buyer_orders_ibfk_1\" \"tb_buyer_orders\" -> \"tb_users\" crosses entity \"tbd_products_users_providers\" (unrelated to this relationship) on segment 1 [431, 138] -> [431, 954] (2px clearance) — adjust fromSide/toSide, set route/via, or move the entity.\n- [clean-flow/edge-through-node] erd relationships[12] id \"tbd_user_payment_methods_ibfk_1\" \"tbd_user_payment_methods\" -> \"tb_users\" crosses entity \"tb_logs\" (unrelated to this relationship) on segment 0 [230, 1480] -> [230, 1278] (2px clearance) — adjust fromSide/toSide, set route/via, or move the entity.\n- [clean-flow/edge-through-node] erd relationships[12] id \"tbd_user_payment_methods_ibfk_1\" \"tbd_user_payment_methods\" -> \"tb_users\" crosses entity \"tbc_payment_methods_types\" (unrelated to this relationship) on segment 0 [230, 1480] -> [230, 1278] (2px clearance) — adjust fromSide/toSide, set route/via, or move the entity.\n- [clean-flow/edge-through-node] erd relationships[14] id \"fk_products3\" \"tbd_users_wishlist_products\" -> \"tb_products\" crosses entity \"tb_buyer_orders\" (unrelated to this relationship) on segment 1 [541, 936] -> [541, 148] (2px clearance) — adjust fromSide/toSide, set route/via, or move the entity.",
+        "diagnostics": [
+          {
+            "code": "clean-flow/edge-through-node",
+            "severity": "error",
+            "message": "[clean-flow/edge-through-node] erd relationships[0] id \"tb_buyer_orders_ibfk_1\" \"tb_buyer_orders\" -> \"tb_users\" crosses entity \"tbd_products_users_providers\" (unrelated to this relationship) on segment 1 [431, 138] -> [431, 954] (2px clearance) — adjust fromSide/toSide, set route/via, or move the entity.",
+            "subject": {
+              "diagramType": "erd",
+              "collection": "relationships",
+              "index": 0,
+              "id": "tb_buyer_orders_ibfk_1",
+              "from": "tb_buyer_orders",
+              "to": "tb_users"
+            },
+            "evidence": {
+              "obstacleKind": "entity",
+              "obstacleId": "tbd_products_users_providers",
+              "segmentIndex": 1,
+              "from": [
+                431,
+                138
+              ],
+              "to": [
+                431,
+                954
+              ],
+              "clearancePx": 2
+            },
+            "supportedFixes": [
+              "adjust fromSide/toSide, set route/via, or move the entity"
+            ]
+          },
+          {
+            "code": "clean-flow/edge-through-node",
+            "severity": "error",
+            "message": "[clean-flow/edge-through-node] erd relationships[12] id \"tbd_user_payment_methods_ibfk_1\" \"tbd_user_payment_methods\" -> \"tb_users\" crosses entity \"tb_logs\" (unrelated to this relationship) on segment 0 [230, 1480] -> [230, 1278] (2px clearance) — adjust fromSide/toSide, set route/via, or move the entity.",
+            "subject": {
+              "diagramType": "erd",
+              "collection": "relationships",
+              "index": 12,
+              "id": "tbd_user_payment_methods_ibfk_1",
+              "from": "tbd_user_payment_methods",
+              "to": "tb_users"
+            },
+            "evidence": {
+              "obstacleKind": "entity",
+              "obstacleId": "tb_logs",
+              "segmentIndex": 0,
+              "from": [
+                230,
+                1480
+              ],
+              "to": [
+                230,
+                1278
+              ],
+              "clearancePx": 2
+            },
+            "supportedFixes": [
+              "adjust fromSide/toSide, set route/via, or move the entity"
+            ]
+          },
+          {
+            "code": "clean-flow/edge-through-node",
+            "severity": "error",
+            "message": "[clean-flow/edge-through-node] erd relationships[12] id \"tbd_user_payment_methods_ibfk_1\" \"tbd_user_payment_methods\" -> \"tb_users\" crosses entity \"tbc_payment_methods_types\" (unrelated to this relationship) on segment 0 [230, 1480] -> [230, 1278] (2px clearance) — adjust fromSide/toSide, set route/via, or move the entity.",
+            "subject": {
+              "diagramType": "erd",
+              "collection": "relationships",
+              "index": 12,
+              "id": "tbd_user_payment_methods_ibfk_1",
+              "from": "tbd_user_payment_methods",
+              "to": "tb_users"
+            },
+            "evidence": {
+              "obstacleKind": "entity",
+              "obstacleId": "tbc_payment_methods_types",
+              "segmentIndex": 0,
+              "from": [
+                230,
+                1480
+              ],
+              "to": [
+                230,
+                1278
+              ],
+              "clearancePx": 2
+            },
+            "supportedFixes": [
+              "adjust fromSide/toSide, set route/via, or move the entity"
+            ]
+          },
+          {
+            "code": "clean-flow/edge-through-node",
+            "severity": "error",
+            "message": "[clean-flow/edge-through-node] erd relationships[14] id \"fk_products3\" \"tbd_users_wishlist_products\" -> \"tb_products\" crosses entity \"tb_buyer_orders\" (unrelated to this relationship) on segment 1 [541, 936] -> [541, 148] (2px clearance) — adjust fromSide/toSide, set route/via, or move the entity.",
+            "subject": {
+              "diagramType": "erd",
+              "collection": "relationships",
+              "index": 14,
+              "id": "fk_products3",
+              "from": "tbd_users_wishlist_products",
+              "to": "tb_products"
+            },
+            "evidence": {
+              "obstacleKind": "entity",
+              "obstacleId": "tb_buyer_orders",
+              "segmentIndex": 1,
+              "from": [
+                541,
+                936
+              ],
+              "to": [
+                541,
+                148
+              ],
+              "clearancePx": 2
+            },
+            "supportedFixes": [
+              "adjust fromSide/toSide, set route/via, or move the entity"
+            ]
+          }
+        ],
+        "provenance": "failed",
+        "update": {
+          "status": "unavailable",
+          "installedVersion": null,
+          "availableVersion": null,
+          "releaseNotes": null,
+          "checkedAt": null,
+          "source": null,
+          "noticeRequired": false,
+          "noticeText": null,
+          "reason": "disabled"
+        }
+      },
+      "execution": "embedded-in-deliver"
+    },
+    "deliver": {
+      "status": "not-run",
+      "execution": "blocked-by-validate"
+    }
+  },
+  "browserCheck": {
+    "requested": true,
+    "ran": false
+  },
+  "diagnostics": [
+    {
+      "code": "clean-flow/edge-through-node",
+      "severity": "error",
+      "message": "[clean-flow/edge-through-node] erd relationships[0] id \"tb_buyer_orders_ibfk_1\" \"tb_buyer_orders\" -> \"tb_users\" crosses entity \"tbd_products_users_providers\" (unrelated to this relationship) on segment 1 [431, 138] -> [431, 954] (2px clearance) — adjust fromSide/toSide, set route/via, or move the entity.",
+      "subject": {
+        "diagramType": "erd",
+        "collection": "relationships",
+        "index": 0,
+        "id": "tb_buyer_orders_ibfk_1",
+        "from": "tb_buyer_orders",
+        "to": "tb_users"
+      },
+      "evidence": {
+        "obstacleKind": "entity",
+        "obstacleId": "tbd_products_users_providers",
+        "segmentIndex": 1,
+        "from": [
+          431,
+          138
+        ],
+        "to": [
+          431,
+          954
+        ],
+        "clearancePx": 2
+      },
+      "supportedFixes": [
+        "adjust fromSide/toSide, set route/via, or move the entity"
+      ]
+    },
+    {
+      "code": "clean-flow/edge-through-node",
+      "severity": "error",
+      "message": "[clean-flow/edge-through-node] erd relationships[12] id \"tbd_user_payment_methods_ibfk_1\" \"tbd_user_payment_methods\" -> \"tb_users\" crosses entity \"tb_logs\" (unrelated to this relationship) on segment 0 [230, 1480] -> [230, 1278] (2px clearance) — adjust fromSide/toSide, set route/via, or move the entity.",
+      "subject": {
+        "diagramType": "erd",
+        "collection": "relationships",
+        "index": 12,
+        "id": "tbd_user_payment_methods_ibfk_1",
+        "from": "tbd_user_payment_methods",
+        "to": "tb_users"
+      },
+      "evidence": {
+        "obstacleKind": "entity",
+        "obstacleId": "tb_logs",
+        "segmentIndex": 0,
+        "from": [
+          230,
+          1480
+        ],
+        "to": [
+          230,
+          1278
+        ],
+        "clearancePx": 2
+      },
+      "supportedFixes": [
+        "adjust fromSide/toSide, set route/via, or move the entity"
+      ]
+    },
+    {
+      "code": "clean-flow/edge-through-node",
+      "severity": "error",
+      "message": "[clean-flow/edge-through-node] erd relationships[12] id \"tbd_user_payment_methods_ibfk_1\" \"tbd_user_payment_methods\" -> \"tb_users\" crosses entity \"tbc_payment_methods_types\" (unrelated to this relationship) on segment 0 [230, 1480] -> [230, 1278] (2px clearance) — adjust fromSide/toSide, set route/via, or move the entity.",
+      "subject": {
+        "diagramType": "erd",
+        "collection": "relationships",
+        "index": 12,
+        "id": "tbd_user_payment_methods_ibfk_1",
+        "from": "tbd_user_payment_methods",
+        "to": "tb_users"
+      },
+      "evidence": {
+        "obstacleKind": "entity",
+        "obstacleId": "tbc_payment_methods_types",
+        "segmentIndex": 0,
+        "from": [
+          230,
+          1480
+        ],
+        "to": [
+          230,
+          1278
+        ],
+        "clearancePx": 2
+      },
+      "supportedFixes": [
+        "adjust fromSide/toSide, set route/via, or move the entity"
+      ]
+    },
+    {
+      "code": "clean-flow/edge-through-node",
+      "severity": "error",
+      "message": "[clean-flow/edge-through-node] erd relationships[14] id \"fk_products3\" \"tbd_users_wishlist_products\" -> \"tb_products\" crosses entity \"tb_buyer_orders\" (unrelated to this relationship) on segment 1 [541, 936] -> [541, 148] (2px clearance) — adjust fromSide/toSide, set route/via, or move the entity.",
+      "subject": {
+        "diagramType": "erd",
+        "collection": "relationships",
+        "index": 14,
+        "id": "fk_products3",
+        "from": "tbd_users_wishlist_products",
+        "to": "tb_products"
+      },
+      "evidence": {
+        "obstacleKind": "entity",
+        "obstacleId": "tb_buyer_orders",
+        "segmentIndex": 1,
+        "from": [
+          541,
+          936
+        ],
+        "to": [
+          541,
+          148
+        ],
+        "clearancePx": 2
+      },
+      "supportedFixes": [
+        "adjust fromSide/toSide, set route/via, or move the entity"
+      ]
+    }
+  ],
+  "evidence": {
+    "receipt": "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/review-3/relaciones-respaldo5.finalize.json",
+    "summaryReceipt": "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/review-3/relaciones-respaldo5.finalize-summary.json"
+  },
+  "visualReview": "not-requested",
+  "failedStage": "validate",
+  "finishedAt": "2026-10-22T14:10:01.412Z",
+  "durationMs": 203,
+  "update": {
+    "status": "current",
+    "installedVersion": "3.2.0",
+    "availableVersion": "3.2.0",
+    "releaseNotes": null,
+    "checkedAt": "2026-10-22T14:08:31.359Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  }
+}

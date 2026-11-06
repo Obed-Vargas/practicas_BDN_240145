@@ -1,0 +1,1615 @@
+{
+  "schemaVersion": 1,
+  "ok": false,
+  "command": "finalize",
+  "status": "fail",
+  "type": "erd",
+  "quality": "standard",
+  "startedAt": "2026-10-22T14:09:12.573Z",
+  "specification": {
+    "path": "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/candidate.json",
+    "sha256": "5dbc851f02e8f5abc8b032f1c0c2505514e64576666b9063a42fe533c62b6a9f",
+    "bytes": 18741
+  },
+  "artifact": {
+    "path": "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/relaciones-respaldo5.html",
+    "sha256": "3c63b1d669872c307fe0890cd80d6f20f2adf6edbf4a75ec440c701adbb3683c",
+    "bytes": 900943
+  },
+  "stages": {
+    "validate": {
+      "status": "pass",
+      "exitCode": 0,
+      "durationMs": null,
+      "execution": "embedded-in-deliver",
+      "command": [
+        "/usr/local/bin/node",
+        "/Users/imac-02/.agents/skills/archify/bin/archify.mjs",
+        "deliver",
+        "erd",
+        "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/candidate.json",
+        "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/relaciones-respaldo5.html",
+        "--quality",
+        "standard",
+        "--repo-root",
+        "/Users/imac-02/practicas_BDN_240145",
+        "--json"
+      ],
+      "receipt": {
+        "schemaVersion": 1,
+        "ok": true,
+        "command": "validate",
+        "specification": {
+          "sha256": "5dbc851f02e8f5abc8b032f1c0c2505514e64576666b9063a42fe533c62b6a9f",
+          "bytes": 18741
+        },
+        "validation": {
+          "checksPassed": 9,
+          "checkCount": 9,
+          "compositionProfile": "standard",
+          "compositionStatus": "pass",
+          "errors": 0,
+          "warnings": 3,
+          "compositionIssues": [
+            {
+              "severity": "warning",
+              "code": "composition/label-route-clearance",
+              "label": "tbd_carts_items_ibfk_3: product_ID → product_ID",
+              "labelRelationship": {
+                "id": "tbd_carts_items_ibfk_3",
+                "from": "tbd_carts_items",
+                "to": "tbd_products_users_providers",
+                "label": "tbd_carts_items_ibfk_3: product_ID → product_ID",
+                "collectionIndex": 4,
+                "artifactIndex": 5
+              },
+              "otherRelationship": {
+                "id": "tbd_carts_items_ibfk_2",
+                "from": "tbd_carts_items",
+                "to": "tbd_products_users_providers",
+                "label": "tbd_carts_items_ibfk_2: provider_ID → user_ID",
+                "collectionIndex": 3,
+                "artifactIndex": 4
+              },
+              "segmentIndex": 0,
+              "labelRect": {
+                "x": 2381.9,
+                "y": 266,
+                "width": 272.3,
+                "height": 14
+              },
+              "clearance": 0,
+              "intersectionLength": 14,
+              "threshold": 2,
+              "from": [
+                2494,
+                286
+              ],
+              "to": [
+                2494,
+                216
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/label-route-clearance",
+              "label": "tbd_carts_items_ibfk_2: provider_ID → user_ID",
+              "labelRelationship": {
+                "id": "tbd_carts_items_ibfk_2",
+                "from": "tbd_carts_items",
+                "to": "tbd_products_users_providers",
+                "label": "tbd_carts_items_ibfk_2: provider_ID → user_ID",
+                "collectionIndex": 3,
+                "artifactIndex": 4
+              },
+              "otherRelationship": {
+                "id": "tbd_carts_items_ibfk_3",
+                "from": "tbd_carts_items",
+                "to": "tbd_products_users_providers",
+                "label": "tbd_carts_items_ibfk_3: product_ID → product_ID",
+                "collectionIndex": 4,
+                "artifactIndex": 5
+              },
+              "segmentIndex": 0,
+              "labelRect": {
+                "x": 2363.5,
+                "y": 266,
+                "width": 261.1,
+                "height": 14
+              },
+              "clearance": 0,
+              "intersectionLength": 14,
+              "threshold": 2,
+              "from": [
+                2518,
+                286
+              ],
+              "to": [
+                2518,
+                216
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/desktop-readability",
+              "nodeId": "tb_buyer_orders",
+              "owner": {
+                "kind": "node",
+                "id": "tb_buyer_orders"
+              },
+              "viewportWidth": 1440,
+              "viewportHeight": 900,
+              "availableDiagramWidth": 1346,
+              "budgetBasis": "recognized-declared-wide",
+              "readerContract": "declared-wide-v1",
+              "requestedTargetPx": 7.5,
+              "requestedTargetMet": false,
+              "budgetLimit": "viewport-cap",
+              "viewBoxWidth": 3068,
+              "scale": 0.438722294654498,
+              "text": "PK",
+              "detail": "context",
+              "sourceFontPx": 9,
+              "projectedFontPx": 3.948500651890482,
+              "minimumProjectedFontPx": 6
+            }
+          ]
+        }
+      }
+    },
+    "deliver": {
+      "status": "pass",
+      "exitCode": 0,
+      "durationMs": 271,
+      "command": [
+        "/usr/local/bin/node",
+        "/Users/imac-02/.agents/skills/archify/bin/archify.mjs",
+        "deliver",
+        "erd",
+        "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/candidate.json",
+        "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/relaciones-respaldo5.html",
+        "--quality",
+        "standard",
+        "--repo-root",
+        "/Users/imac-02/practicas_BDN_240145",
+        "--json"
+      ],
+      "receipt": {
+        "schemaVersion": 1,
+        "receiptId": "ac94b9df-a0ac-4d92-98de-204397ad96b1",
+        "ok": true,
+        "command": "deliver",
+        "type": "erd",
+        "input": "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/candidate.json",
+        "output": "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/relaciones-respaldo5.html",
+        "specification": {
+          "sha256": "5dbc851f02e8f5abc8b032f1c0c2505514e64576666b9063a42fe533c62b6a9f",
+          "bytes": 18741
+        },
+        "artifact": {
+          "sha256": "3c63b1d669872c307fe0890cd80d6f20f2adf6edbf4a75ec440c701adbb3683c",
+          "bytes": 900943
+        },
+        "validation": {
+          "checksPassed": 9,
+          "checkCount": 9,
+          "compositionProfile": "standard",
+          "compositionStatus": "pass",
+          "errors": 0,
+          "warnings": 3,
+          "compositionIssues": [
+            {
+              "severity": "warning",
+              "code": "composition/label-route-clearance",
+              "label": "tbd_carts_items_ibfk_3: product_ID → product_ID",
+              "labelRelationship": {
+                "id": "tbd_carts_items_ibfk_3",
+                "from": "tbd_carts_items",
+                "to": "tbd_products_users_providers",
+                "label": "tbd_carts_items_ibfk_3: product_ID → product_ID",
+                "collectionIndex": 4,
+                "artifactIndex": 5
+              },
+              "otherRelationship": {
+                "id": "tbd_carts_items_ibfk_2",
+                "from": "tbd_carts_items",
+                "to": "tbd_products_users_providers",
+                "label": "tbd_carts_items_ibfk_2: provider_ID → user_ID",
+                "collectionIndex": 3,
+                "artifactIndex": 4
+              },
+              "segmentIndex": 0,
+              "labelRect": {
+                "x": 2381.9,
+                "y": 266,
+                "width": 272.3,
+                "height": 14
+              },
+              "clearance": 0,
+              "intersectionLength": 14,
+              "threshold": 2,
+              "from": [
+                2494,
+                286
+              ],
+              "to": [
+                2494,
+                216
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/label-route-clearance",
+              "label": "tbd_carts_items_ibfk_2: provider_ID → user_ID",
+              "labelRelationship": {
+                "id": "tbd_carts_items_ibfk_2",
+                "from": "tbd_carts_items",
+                "to": "tbd_products_users_providers",
+                "label": "tbd_carts_items_ibfk_2: provider_ID → user_ID",
+                "collectionIndex": 3,
+                "artifactIndex": 4
+              },
+              "otherRelationship": {
+                "id": "tbd_carts_items_ibfk_3",
+                "from": "tbd_carts_items",
+                "to": "tbd_products_users_providers",
+                "label": "tbd_carts_items_ibfk_3: product_ID → product_ID",
+                "collectionIndex": 4,
+                "artifactIndex": 5
+              },
+              "segmentIndex": 0,
+              "labelRect": {
+                "x": 2363.5,
+                "y": 266,
+                "width": 261.1,
+                "height": 14
+              },
+              "clearance": 0,
+              "intersectionLength": 14,
+              "threshold": 2,
+              "from": [
+                2518,
+                286
+              ],
+              "to": [
+                2518,
+                216
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/desktop-readability",
+              "nodeId": "tb_buyer_orders",
+              "owner": {
+                "kind": "node",
+                "id": "tb_buyer_orders"
+              },
+              "viewportWidth": 1440,
+              "viewportHeight": 900,
+              "availableDiagramWidth": 1346,
+              "budgetBasis": "recognized-declared-wide",
+              "readerContract": "declared-wide-v1",
+              "requestedTargetPx": 7.5,
+              "requestedTargetMet": false,
+              "budgetLimit": "viewport-cap",
+              "viewBoxWidth": 3068,
+              "scale": 0.438722294654498,
+              "text": "PK",
+              "detail": "context",
+              "sourceFontPx": 9,
+              "projectedFontPx": 3.948500651890482,
+              "minimumProjectedFontPx": 6
+            }
+          ]
+        },
+        "evidence": {
+          "verified": true,
+          "repository": "https://github.com/Obed-Vargas/practicas_BDN_240145",
+          "revision": "3d83d5b9280629cae7c71c32268bb1140c6cc31b",
+          "references": 13
+        },
+        "update": {
+          "status": "unavailable",
+          "installedVersion": null,
+          "availableVersion": null,
+          "releaseNotes": null,
+          "checkedAt": null,
+          "source": null,
+          "noticeRequired": false,
+          "noticeText": null,
+          "reason": "disabled"
+        }
+      }
+    },
+    "check": {
+      "status": "pass",
+      "exitCode": 0,
+      "durationMs": 96,
+      "command": [
+        "/usr/local/bin/node",
+        "/Users/imac-02/.agents/skills/archify/bin/archify.mjs",
+        "check",
+        "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/relaciones-respaldo5.html",
+        "--require-provenance"
+      ],
+      "receipt": {
+        "ok": true,
+        "file": "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/relaciones-respaldo5.html",
+        "artifact": {
+          "sha256": "3c63b1d669872c307fe0890cd80d6f20f2adf6edbf4a75ec440c701adbb3683c",
+          "bytes": 900943
+        },
+        "checks": [
+          {
+            "name": "single_svg",
+            "ok": true,
+            "details": [
+              "found 1 <svg> block(s)"
+            ]
+          },
+          {
+            "name": "finite_svg",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "orthogonal_arrows",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "label_route_clearance",
+            "ok": true,
+            "details": [
+              "[composition/label-route-clearance] standard label \"tbd_carts_items_ibfk_3: product_ID → product_ID\" on relationship id \"tbd_carts_items_ibfk_3\" (\"tbd_carts_items\" -> \"tbd_products_users_providers\") is 0px from relationship id \"tbd_carts_items_ibfk_2\" (\"tbd_carts_items\" -> \"tbd_products_users_providers\") segment 0 [2494, 286] -> [2494, 216] with 14px hidden by the mask (minimum 2px) — use renderer-supported label controls (message y for sequence; otherwise labelAt, labelDx, labelDy, or labelSegment), or adjust the other relationship route/via/channel.",
+              "[composition/label-route-clearance] standard label \"tbd_carts_items_ibfk_2: provider_ID → user_ID\" on relationship id \"tbd_carts_items_ibfk_2\" (\"tbd_carts_items\" -> \"tbd_products_users_providers\") is 0px from relationship id \"tbd_carts_items_ibfk_3\" (\"tbd_carts_items\" -> \"tbd_products_users_providers\") segment 0 [2518, 286] -> [2518, 216] with 14px hidden by the mask (minimum 2px) — use renderer-supported label controls (message y for sequence; otherwise labelAt, labelDx, labelDy, or labelSegment), or adjust the other relationship route/via/channel."
+            ]
+          },
+          {
+            "name": "relationship_crossings",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "relationship_corridors",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "container_border_runs",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "route_rhythm",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "legend_clearance",
+            "ok": true,
+            "details": []
+          }
+        ],
+        "composition": {
+          "schemaVersion": 1,
+          "profile": "standard",
+          "status": "pass",
+          "summary": {
+            "errors": 0,
+            "warnings": 3
+          },
+          "metrics": {
+            "properCrossings": 0,
+            "resolvedCrossovers": 0,
+            "ambiguousCorridors": 0,
+            "arrowheadCollisions": 0,
+            "containerBorderRuns": 0,
+            "labelRouteClearanceIssues": 2,
+            "labelCanvasOverflowIssues": 0,
+            "minLabelRouteClearance": 0,
+            "desktopReadabilityIssues": 1,
+            "viewportHeightIssues": 0,
+            "minProjectedNodeTextPx": 3.948500651890482,
+            "maxBends": 6,
+            "routesOverSuggestedBends": 8,
+            "maxStretch": 1.143,
+            "routesOverSuggestedStretch": 0,
+            "minSegmentPx": 16,
+            "minInteriorSegmentPx": 32,
+            "shortSegmentCount": 0,
+            "shortEndpointSegmentCount": 0,
+            "shortInteriorSegmentCount": 0,
+            "microSegmentCount": 0
+          },
+          "suggestedLimits": {
+            "bendsPerRelationship": 2,
+            "stretch": 1.35,
+            "segmentPx": 16,
+            "microSegmentPx": 8
+          },
+          "routeReview": {
+            "crossings": [],
+            "detours": [
+              {
+                "relationship": {
+                  "id": "fk_carts_user",
+                  "from": "tb_carts",
+                  "to": "tb_users",
+                  "label": "fk_carts_user: user_ID → ID",
+                  "collectionIndex": 1,
+                  "artifactIndex": 2
+                },
+                "bends": 3,
+                "stretch": 1
+              },
+              {
+                "relationship": {
+                  "id": "tbd_order_items_ibfk_2",
+                  "from": "tbd_order_items",
+                  "to": "tbd_products_users_providers",
+                  "label": "tbd_order_items_ibfk_2: product_ID → product_ID",
+                  "collectionIndex": 6,
+                  "artifactIndex": 7
+                },
+                "bends": 3,
+                "stretch": 1
+              },
+              {
+                "relationship": {
+                  "id": "tbd_order_items_ibfk_3",
+                  "from": "tbd_order_items",
+                  "to": "tbd_products_users_providers",
+                  "label": "tbd_order_items_ibfk_3: provider_ID → user_ID",
+                  "collectionIndex": 7,
+                  "artifactIndex": 8
+                },
+                "bends": 3,
+                "stretch": 1
+              },
+              {
+                "relationship": {
+                  "id": "fk_product_cat",
+                  "from": "tbd_products_categories",
+                  "to": "tb_products",
+                  "label": "fk_product_cat: product_ID → ID",
+                  "collectionIndex": 9,
+                  "artifactIndex": 10
+                },
+                "bends": 4,
+                "stretch": 1.143
+              },
+              {
+                "relationship": {
+                  "id": "fk_products2",
+                  "from": "tbd_products_users_providers",
+                  "to": "tb_products",
+                  "label": "fk_products2: product_ID → ID",
+                  "collectionIndex": 10,
+                  "artifactIndex": 11
+                },
+                "bends": 4,
+                "stretch": 1.07
+              },
+              {
+                "relationship": {
+                  "id": "fk_user1",
+                  "from": "tbd_products_users_providers",
+                  "to": "tb_users",
+                  "label": "fk_user1: user_ID → ID",
+                  "collectionIndex": 11,
+                  "artifactIndex": 12
+                },
+                "bends": 6,
+                "stretch": 1
+              },
+              {
+                "relationship": {
+                  "id": "fk_products3",
+                  "from": "tbd_users_wishlist_products",
+                  "to": "tb_products",
+                  "label": "fk_products3: product_ID → ID",
+                  "collectionIndex": 14,
+                  "artifactIndex": 15
+                },
+                "bends": 4,
+                "stretch": 1.117
+              },
+              {
+                "relationship": {
+                  "id": "fk_user2",
+                  "from": "tbd_users_wishlist_products",
+                  "to": "tb_users",
+                  "label": "fk_user2: user_ID → ID",
+                  "collectionIndex": 15,
+                  "artifactIndex": 16
+                },
+                "bends": 3,
+                "stretch": 1
+              }
+            ]
+          },
+          "leadingSpace": {
+            "measured": false,
+            "reviewSuggested": false
+          },
+          "desktopReadability": {
+            "budgetBasis": "recognized-declared-wide",
+            "readerContract": "declared-wide-v1",
+            "availableDiagramWidth": 1346,
+            "actualBudgetPx": 1346,
+            "actualReaderWidth": 1376,
+            "desiredReaderWidth": 2586.666666666667,
+            "viewportCap": 1376,
+            "limit": "viewport-cap",
+            "requestedTargetPx": 7.5,
+            "requestedTargetMet": false,
+            "hardFloorPx": 6,
+            "hardFloorMet": false,
+            "minimumOwner": {
+              "kind": "node",
+              "id": "tb_buyer_orders"
+            },
+            "minimumSourceTextPx": 9,
+            "minimumProjectedTextPx": 3.948500651890482,
+            "semanticTextCount": 256
+          },
+          "issues": [
+            {
+              "severity": "warning",
+              "code": "composition/label-route-clearance",
+              "label": "tbd_carts_items_ibfk_3: product_ID → product_ID",
+              "labelRelationship": {
+                "id": "tbd_carts_items_ibfk_3",
+                "from": "tbd_carts_items",
+                "to": "tbd_products_users_providers",
+                "label": "tbd_carts_items_ibfk_3: product_ID → product_ID",
+                "collectionIndex": 4,
+                "artifactIndex": 5
+              },
+              "otherRelationship": {
+                "id": "tbd_carts_items_ibfk_2",
+                "from": "tbd_carts_items",
+                "to": "tbd_products_users_providers",
+                "label": "tbd_carts_items_ibfk_2: provider_ID → user_ID",
+                "collectionIndex": 3,
+                "artifactIndex": 4
+              },
+              "segmentIndex": 0,
+              "labelRect": {
+                "x": 2381.9,
+                "y": 266,
+                "width": 272.3,
+                "height": 14
+              },
+              "clearance": 0,
+              "intersectionLength": 14,
+              "threshold": 2,
+              "from": [
+                2494,
+                286
+              ],
+              "to": [
+                2494,
+                216
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/label-route-clearance",
+              "label": "tbd_carts_items_ibfk_2: provider_ID → user_ID",
+              "labelRelationship": {
+                "id": "tbd_carts_items_ibfk_2",
+                "from": "tbd_carts_items",
+                "to": "tbd_products_users_providers",
+                "label": "tbd_carts_items_ibfk_2: provider_ID → user_ID",
+                "collectionIndex": 3,
+                "artifactIndex": 4
+              },
+              "otherRelationship": {
+                "id": "tbd_carts_items_ibfk_3",
+                "from": "tbd_carts_items",
+                "to": "tbd_products_users_providers",
+                "label": "tbd_carts_items_ibfk_3: product_ID → product_ID",
+                "collectionIndex": 4,
+                "artifactIndex": 5
+              },
+              "segmentIndex": 0,
+              "labelRect": {
+                "x": 2363.5,
+                "y": 266,
+                "width": 261.1,
+                "height": 14
+              },
+              "clearance": 0,
+              "intersectionLength": 14,
+              "threshold": 2,
+              "from": [
+                2518,
+                286
+              ],
+              "to": [
+                2518,
+                216
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "composition/desktop-readability",
+              "nodeId": "tb_buyer_orders",
+              "owner": {
+                "kind": "node",
+                "id": "tb_buyer_orders"
+              },
+              "viewportWidth": 1440,
+              "viewportHeight": 900,
+              "availableDiagramWidth": 1346,
+              "budgetBasis": "recognized-declared-wide",
+              "readerContract": "declared-wide-v1",
+              "requestedTargetPx": 7.5,
+              "requestedTargetMet": false,
+              "budgetLimit": "viewport-cap",
+              "viewBoxWidth": 3068,
+              "scale": 0.438722294654498,
+              "text": "PK",
+              "detail": "context",
+              "sourceFontPx": 9,
+              "projectedFontPx": 3.948500651890482,
+              "minimumProjectedFontPx": 6
+            }
+          ]
+        },
+        "provenance": "current",
+        "deliveryReceiptId": "ac94b9df-a0ac-4d92-98de-204397ad96b1"
+      }
+    },
+    "browser-check": {
+      "status": "fail",
+      "exitCode": 1,
+      "durationMs": 1181,
+      "command": [
+        "/usr/local/bin/node",
+        "/Users/imac-02/.agents/skills/archify/bin/archify.mjs",
+        "browser-check",
+        "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/relaciones-respaldo5.html",
+        "--json",
+        "--require-provenance",
+        "--out-dir",
+        "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/review-2"
+      ],
+      "execution": "in-process",
+      "receipt": {
+        "schemaVersion": 1,
+        "ok": false,
+        "command": "browser-check",
+        "evidenceKind": "automated-browser",
+        "status": "fail",
+        "visualReview": "not-requested",
+        "provenance": "current",
+        "deliveryReceiptId": "ac94b9df-a0ac-4d92-98de-204397ad96b1",
+        "artifact": {
+          "path": "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/relaciones-respaldo5.html",
+          "sha256": "3c63b1d669872c307fe0890cd80d6f20f2adf6edbf4a75ec440c701adbb3683c",
+          "bytes": 900943
+        },
+        "state": {
+          "detail": "read",
+          "motion": "still"
+        },
+        "chrome": {
+          "status": "available",
+          "executable": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+        },
+        "diagnostics": [
+          {
+            "code": "viewer/projected-text-readability",
+            "severity": "error",
+            "message": "Projected context text is below the readability floor at 1440x900.",
+            "subject": {
+              "artifact": "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/relaciones-respaldo5.html",
+              "viewport": {
+                "width": 1440,
+                "height": 900,
+                "theme": "light"
+              }
+            },
+            "evidence": {
+              "text": "PK",
+              "detail": "context",
+              "owner": {
+                "kind": "node",
+                "id": "tb_buyer_orders"
+              },
+              "minimumProjectedNodeTextPx": 3.948500651890482,
+              "minimumRequiredNodeTextPx": 6
+            },
+            "supportedFixes": [
+              "increase projected node text to at least 6px at 1440x900, then rerun browser-check"
+            ]
+          },
+          {
+            "code": "viewer/projected-text-readability",
+            "severity": "error",
+            "message": "Projected context text is below the readability floor at 1600x1000.",
+            "subject": {
+              "artifact": "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/relaciones-respaldo5.html",
+              "viewport": {
+                "width": 1600,
+                "height": 1000,
+                "theme": "light"
+              }
+            },
+            "evidence": {
+              "text": "PK",
+              "detail": "context",
+              "owner": {
+                "kind": "node",
+                "id": "tb_buyer_orders"
+              },
+              "minimumProjectedNodeTextPx": 4.417861799217731,
+              "minimumRequiredNodeTextPx": 6
+            },
+            "supportedFixes": [
+              "increase projected node text to at least 6px at 1600x1000, then rerun browser-check"
+            ]
+          },
+          {
+            "code": "viewer/projected-text-readability",
+            "severity": "error",
+            "message": "Projected context text is below the readability floor at 1920x1080.",
+            "subject": {
+              "artifact": "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/relaciones-respaldo5.html",
+              "viewport": {
+                "width": 1920,
+                "height": 1080,
+                "theme": "light"
+              }
+            },
+            "evidence": {
+              "text": "PK",
+              "detail": "context",
+              "owner": {
+                "kind": "node",
+                "id": "tb_buyer_orders"
+              },
+              "minimumProjectedNodeTextPx": 5.356584093872229,
+              "minimumRequiredNodeTextPx": 6
+            },
+            "supportedFixes": [
+              "increase projected node text to at least 6px at 1920x1080, then rerun browser-check"
+            ]
+          },
+          {
+            "code": "viewer/projected-text-readability",
+            "severity": "error",
+            "message": "Projected context text is below the readability floor at 2048x1320.",
+            "subject": {
+              "artifact": "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/relaciones-respaldo5.html",
+              "viewport": {
+                "width": 2048,
+                "height": 1320,
+                "theme": "light"
+              }
+            },
+            "evidence": {
+              "text": "PK",
+              "detail": "context",
+              "owner": {
+                "kind": "node",
+                "id": "tb_buyer_orders"
+              },
+              "minimumProjectedNodeTextPx": 5.485658409387223,
+              "minimumRequiredNodeTextPx": 6
+            },
+            "supportedFixes": [
+              "increase projected node text to at least 6px at 2048x1320, then rerun browser-check"
+            ]
+          }
+        ],
+        "containment": {
+          "status": "pass",
+          "policy": "fit-or-reader-declared-readable-vertical-scroll",
+          "viewports": [
+            {
+              "width": 1440,
+              "height": 900,
+              "theme": "light",
+              "innerWidth": 1440,
+              "innerHeight": 900,
+              "scrollWidth": 1440,
+              "scrollHeight": 900,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1376,
+              "diagramWidth": 1346,
+              "pageComposition": {
+                "bodyPaddingPx": 12,
+                "headerPx": 52,
+                "diagramChromePx": 78,
+                "svgPx": 470,
+                "cardsPx": 0,
+                "viewBoxHeight": 1072
+              },
+              "viewBoxWidth": 3068,
+              "minimumProjectedNodeTextPx": 3.948500651890482,
+              "minimumProjectedNonEdgeTextPx": 3.948500651890482,
+              "minimumProjectedEdgeTextPx": 3.948500651890482,
+              "minimumProjectedNodeText": "PK",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "tb_buyer_orders"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": false,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 1600,
+              "height": 1000,
+              "theme": "light",
+              "innerWidth": 1600,
+              "innerHeight": 1000,
+              "scrollWidth": 1600,
+              "scrollHeight": 1000,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1536,
+              "diagramWidth": 1506,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 60,
+                "diagramChromePx": 84,
+                "svgPx": 526,
+                "cardsPx": 0,
+                "viewBoxHeight": 1072
+              },
+              "viewBoxWidth": 3068,
+              "minimumProjectedNodeTextPx": 4.417861799217731,
+              "minimumProjectedNonEdgeTextPx": 4.417861799217731,
+              "minimumProjectedEdgeTextPx": 4.417861799217731,
+              "minimumProjectedNodeText": "PK",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "tb_buyer_orders"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": false,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 1920,
+              "height": 1080,
+              "theme": "light",
+              "innerWidth": 1920,
+              "innerHeight": 1080,
+              "scrollWidth": 1920,
+              "scrollHeight": 1080,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1856,
+              "diagramWidth": 1826,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 60,
+                "diagramChromePx": 84,
+                "svgPx": 638,
+                "cardsPx": 0,
+                "viewBoxHeight": 1072
+              },
+              "viewBoxWidth": 3068,
+              "minimumProjectedNodeTextPx": 5.356584093872229,
+              "minimumProjectedNonEdgeTextPx": 5.356584093872229,
+              "minimumProjectedEdgeTextPx": 5.356584093872229,
+              "minimumProjectedNodeText": "PK",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "tb_buyer_orders"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": false,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 2048,
+              "height": 1320,
+              "theme": "light",
+              "innerWidth": 2048,
+              "innerHeight": 1320,
+              "scrollWidth": 2048,
+              "scrollHeight": 1320,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1920,
+              "diagramWidth": 1870,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 68,
+                "diagramChromePx": 94,
+                "svgPx": 653,
+                "cardsPx": 0,
+                "viewBoxHeight": 1072
+              },
+              "viewBoxWidth": 3068,
+              "minimumProjectedNodeTextPx": 5.485658409387223,
+              "minimumProjectedNonEdgeTextPx": 5.485658409387223,
+              "minimumProjectedEdgeTextPx": 5.485658409387223,
+              "minimumProjectedNodeText": "PK",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "tb_buyer_orders"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": false,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 44,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            }
+          ]
+        },
+        "themeStates": {
+          "status": "pass",
+          "viewports": [
+            {
+              "width": 1440,
+              "height": 900,
+              "requestedTheme": "light",
+              "resolvedTheme": "light",
+              "ok": true
+            },
+            {
+              "width": 1600,
+              "height": 1000,
+              "requestedTheme": "light",
+              "resolvedTheme": "light",
+              "ok": true
+            },
+            {
+              "width": 1920,
+              "height": 1080,
+              "requestedTheme": "light",
+              "resolvedTheme": "light",
+              "ok": true
+            },
+            {
+              "width": 2048,
+              "height": 1320,
+              "requestedTheme": "light",
+              "resolvedTheme": "light",
+              "ok": true
+            },
+            {
+              "width": 1440,
+              "height": 900,
+              "requestedTheme": "dark",
+              "resolvedTheme": "dark",
+              "ok": true
+            },
+            {
+              "width": 2048,
+              "height": 1320,
+              "requestedTheme": "dark",
+              "resolvedTheme": "dark",
+              "ok": true
+            }
+          ]
+        },
+        "readability": {
+          "status": "fail",
+          "minimumProjectedNodeTextPx": 6,
+          "viewports": [
+            {
+              "width": 1440,
+              "height": 900,
+              "theme": "light",
+              "innerWidth": 1440,
+              "innerHeight": 900,
+              "scrollWidth": 1440,
+              "scrollHeight": 900,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1376,
+              "diagramWidth": 1346,
+              "pageComposition": {
+                "bodyPaddingPx": 12,
+                "headerPx": 52,
+                "diagramChromePx": 78,
+                "svgPx": 470,
+                "cardsPx": 0,
+                "viewBoxHeight": 1072
+              },
+              "viewBoxWidth": 3068,
+              "minimumProjectedNodeTextPx": 3.948500651890482,
+              "minimumProjectedNonEdgeTextPx": 3.948500651890482,
+              "minimumProjectedEdgeTextPx": 3.948500651890482,
+              "minimumProjectedNodeText": "PK",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "tb_buyer_orders"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": false,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 1600,
+              "height": 1000,
+              "theme": "light",
+              "innerWidth": 1600,
+              "innerHeight": 1000,
+              "scrollWidth": 1600,
+              "scrollHeight": 1000,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1536,
+              "diagramWidth": 1506,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 60,
+                "diagramChromePx": 84,
+                "svgPx": 526,
+                "cardsPx": 0,
+                "viewBoxHeight": 1072
+              },
+              "viewBoxWidth": 3068,
+              "minimumProjectedNodeTextPx": 4.417861799217731,
+              "minimumProjectedNonEdgeTextPx": 4.417861799217731,
+              "minimumProjectedEdgeTextPx": 4.417861799217731,
+              "minimumProjectedNodeText": "PK",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "tb_buyer_orders"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": false,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 1920,
+              "height": 1080,
+              "theme": "light",
+              "innerWidth": 1920,
+              "innerHeight": 1080,
+              "scrollWidth": 1920,
+              "scrollHeight": 1080,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1856,
+              "diagramWidth": 1826,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 60,
+                "diagramChromePx": 84,
+                "svgPx": 638,
+                "cardsPx": 0,
+                "viewBoxHeight": 1072
+              },
+              "viewBoxWidth": 3068,
+              "minimumProjectedNodeTextPx": 5.356584093872229,
+              "minimumProjectedNonEdgeTextPx": 5.356584093872229,
+              "minimumProjectedEdgeTextPx": 5.356584093872229,
+              "minimumProjectedNodeText": "PK",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "tb_buyer_orders"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": false,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 2048,
+              "height": 1320,
+              "theme": "light",
+              "innerWidth": 2048,
+              "innerHeight": 1320,
+              "scrollWidth": 2048,
+              "scrollHeight": 1320,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1920,
+              "diagramWidth": 1870,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 68,
+                "diagramChromePx": 94,
+                "svgPx": 653,
+                "cardsPx": 0,
+                "viewBoxHeight": 1072
+              },
+              "viewBoxWidth": 3068,
+              "minimumProjectedNodeTextPx": 5.485658409387223,
+              "minimumProjectedNonEdgeTextPx": 5.485658409387223,
+              "minimumProjectedEdgeTextPx": 5.485658409387223,
+              "minimumProjectedNodeText": "PK",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "tb_buyer_orders"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": false,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 44,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            }
+          ]
+        },
+        "viewerChrome": {
+          "status": "pass",
+          "viewports": [
+            {
+              "width": 1440,
+              "height": 900,
+              "theme": "light",
+              "innerWidth": 1440,
+              "innerHeight": 900,
+              "scrollWidth": 1440,
+              "scrollHeight": 900,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1376,
+              "diagramWidth": 1346,
+              "pageComposition": {
+                "bodyPaddingPx": 12,
+                "headerPx": 52,
+                "diagramChromePx": 78,
+                "svgPx": 470,
+                "cardsPx": 0,
+                "viewBoxHeight": 1072
+              },
+              "viewBoxWidth": 3068,
+              "minimumProjectedNodeTextPx": 3.948500651890482,
+              "minimumProjectedNonEdgeTextPx": 3.948500651890482,
+              "minimumProjectedEdgeTextPx": 3.948500651890482,
+              "minimumProjectedNodeText": "PK",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "tb_buyer_orders"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": false,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 1600,
+              "height": 1000,
+              "theme": "light",
+              "innerWidth": 1600,
+              "innerHeight": 1000,
+              "scrollWidth": 1600,
+              "scrollHeight": 1000,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1536,
+              "diagramWidth": 1506,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 60,
+                "diagramChromePx": 84,
+                "svgPx": 526,
+                "cardsPx": 0,
+                "viewBoxHeight": 1072
+              },
+              "viewBoxWidth": 3068,
+              "minimumProjectedNodeTextPx": 4.417861799217731,
+              "minimumProjectedNonEdgeTextPx": 4.417861799217731,
+              "minimumProjectedEdgeTextPx": 4.417861799217731,
+              "minimumProjectedNodeText": "PK",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "tb_buyer_orders"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": false,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 1920,
+              "height": 1080,
+              "theme": "light",
+              "innerWidth": 1920,
+              "innerHeight": 1080,
+              "scrollWidth": 1920,
+              "scrollHeight": 1080,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1856,
+              "diagramWidth": 1826,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 60,
+                "diagramChromePx": 84,
+                "svgPx": 638,
+                "cardsPx": 0,
+                "viewBoxHeight": 1072
+              },
+              "viewBoxWidth": 3068,
+              "minimumProjectedNodeTextPx": 5.356584093872229,
+              "minimumProjectedNonEdgeTextPx": 5.356584093872229,
+              "minimumProjectedEdgeTextPx": 5.356584093872229,
+              "minimumProjectedNodeText": "PK",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "tb_buyer_orders"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": false,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 2048,
+              "height": 1320,
+              "theme": "light",
+              "innerWidth": 2048,
+              "innerHeight": 1320,
+              "scrollWidth": 2048,
+              "scrollHeight": 1320,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": "intrinsic-height",
+              "ok": true,
+              "readerWidth": 1920,
+              "diagramWidth": 1870,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 68,
+                "diagramChromePx": 94,
+                "svgPx": 653,
+                "cardsPx": 0,
+                "viewBoxHeight": 1072
+              },
+              "viewBoxWidth": 3068,
+              "minimumProjectedNodeTextPx": 5.485658409387223,
+              "minimumProjectedNonEdgeTextPx": 5.485658409387223,
+              "minimumProjectedEdgeTextPx": 5.485658409387223,
+              "minimumProjectedNodeText": "PK",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "tb_buyer_orders"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": false,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 44,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            }
+          ]
+        },
+        "captures": {
+          "status": "not-requested",
+          "screenshots": [],
+          "contactSheet": null
+        },
+        "sidecars": {
+          "directory": "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/review-2",
+          "receipt": "relaciones-respaldo5.browser-check.json",
+          "files": []
+        }
+      }
+    }
+  },
+  "browserCheck": {
+    "requested": true,
+    "ran": true
+  },
+  "diagnostics": [
+    {
+      "code": "viewer/projected-text-readability",
+      "severity": "error",
+      "message": "Projected context text is below the readability floor at 1440x900.",
+      "subject": {
+        "artifact": "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/relaciones-respaldo5.html",
+        "viewport": {
+          "width": 1440,
+          "height": 900,
+          "theme": "light"
+        }
+      },
+      "evidence": {
+        "text": "PK",
+        "detail": "context",
+        "owner": {
+          "kind": "node",
+          "id": "tb_buyer_orders"
+        },
+        "minimumProjectedNodeTextPx": 3.948500651890482,
+        "minimumRequiredNodeTextPx": 6
+      },
+      "supportedFixes": [
+        "increase projected node text to at least 6px at 1440x900, then rerun browser-check"
+      ]
+    },
+    {
+      "code": "viewer/projected-text-readability",
+      "severity": "error",
+      "message": "Projected context text is below the readability floor at 1600x1000.",
+      "subject": {
+        "artifact": "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/relaciones-respaldo5.html",
+        "viewport": {
+          "width": 1600,
+          "height": 1000,
+          "theme": "light"
+        }
+      },
+      "evidence": {
+        "text": "PK",
+        "detail": "context",
+        "owner": {
+          "kind": "node",
+          "id": "tb_buyer_orders"
+        },
+        "minimumProjectedNodeTextPx": 4.417861799217731,
+        "minimumRequiredNodeTextPx": 6
+      },
+      "supportedFixes": [
+        "increase projected node text to at least 6px at 1600x1000, then rerun browser-check"
+      ]
+    },
+    {
+      "code": "viewer/projected-text-readability",
+      "severity": "error",
+      "message": "Projected context text is below the readability floor at 1920x1080.",
+      "subject": {
+        "artifact": "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/relaciones-respaldo5.html",
+        "viewport": {
+          "width": 1920,
+          "height": 1080,
+          "theme": "light"
+        }
+      },
+      "evidence": {
+        "text": "PK",
+        "detail": "context",
+        "owner": {
+          "kind": "node",
+          "id": "tb_buyer_orders"
+        },
+        "minimumProjectedNodeTextPx": 5.356584093872229,
+        "minimumRequiredNodeTextPx": 6
+      },
+      "supportedFixes": [
+        "increase projected node text to at least 6px at 1920x1080, then rerun browser-check"
+      ]
+    },
+    {
+      "code": "viewer/projected-text-readability",
+      "severity": "error",
+      "message": "Projected context text is below the readability floor at 2048x1320.",
+      "subject": {
+        "artifact": "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/relaciones-respaldo5.html",
+        "viewport": {
+          "width": 2048,
+          "height": 1320,
+          "theme": "light"
+        }
+      },
+      "evidence": {
+        "text": "PK",
+        "detail": "context",
+        "owner": {
+          "kind": "node",
+          "id": "tb_buyer_orders"
+        },
+        "minimumProjectedNodeTextPx": 5.485658409387223,
+        "minimumRequiredNodeTextPx": 6
+      },
+      "supportedFixes": [
+        "increase projected node text to at least 6px at 2048x1320, then rerun browser-check"
+      ]
+    }
+  ],
+  "evidence": {
+    "receipt": "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/review-2/relaciones-respaldo5.finalize.json",
+    "summaryReceipt": "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/review-2/relaciones-respaldo5.finalize-summary.json",
+    "browserCheckReceipt": "/Users/imac-02/practicas_BDN_240145/.archify/respaldo5-diccionario-20261022-080200/review-2/relaciones-respaldo5.browser-check.json"
+  },
+  "visualReview": "not-requested",
+  "failedStage": "browser-check",
+  "finishedAt": "2026-10-22T14:09:14.188Z",
+  "durationMs": 1615,
+  "update": {
+    "status": "current",
+    "installedVersion": "3.2.0",
+    "availableVersion": "3.2.0",
+    "releaseNotes": null,
+    "checkedAt": "2026-10-22T14:08:31.359Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  }
+}
