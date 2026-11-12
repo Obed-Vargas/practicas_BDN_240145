@@ -1,0 +1,265 @@
+{
+  "schemaVersion": 1,
+  "ok": false,
+  "command": "finalize",
+  "status": "fail",
+  "type": "erd",
+  "quality": "standard",
+  "specification": {
+    "path": "C:\\Users\\obedv\\Documents\\practicas_BDN_240145\\.archify\\respaldo5-diccionario-20261022-080200\\candidate.json",
+    "sha256": "60ccf86064e7f17a8b965788a67648de3de676d854fcdd32e93b795bb7f255ad",
+    "bytes": 105203
+  },
+  "artifact": {
+    "path": "C:\\Users\\obedv\\Documents\\practicas_BDN_240145\\.archify\\respaldo5-diccionario-20261022-080200\\relaciones-respaldo5.html",
+    "sha256": "ebca9b8acb5f18063e8ed8c5716c64e917b87c203943c212da030402b943f25e",
+    "bytes": 947304
+  },
+  "gates": {
+    "validate": "fail",
+    "deliver": "not-run",
+    "check": "not-run",
+    "browser-check": "not-run"
+  },
+  "failedStage": "validate",
+  "diagnostics": [
+    {
+      "code": "clean-flow/edge-through-node",
+      "severity": "error",
+      "message": "[clean-flow/edge-through-node] erd relationships[10] id \"fk_refunds_cancellation\" \"tb_refunds\" -> \"tb_cancellations\" crosses entity \"tb_logs\" (unrelated to this relationship) on segment 1 [2034, 1182] -> [2034, 180] (2px clearance) — adjust fromSide/toSide, set route/via, or move the entity.",
+      "subject": {
+        "diagramType": "erd",
+        "collection": "relationships",
+        "index": 10,
+        "id": "fk_refunds_cancellation",
+        "from": "tb_refunds",
+        "to": "tb_cancellations"
+      },
+      "evidence": {
+        "obstacleKind": "entity",
+        "obstacleId": "tb_logs",
+        "segmentIndex": 1,
+        "from": [
+          2034.25,
+          1182
+        ],
+        "to": [
+          2034.25,
+          180
+        ],
+        "clearancePx": 2
+      },
+      "supportedFixes": [
+        "adjust fromSide/toSide, set route/via, or move the entity"
+      ]
+    },
+    {
+      "code": "erd/attribute-text-capacity",
+      "severity": "error",
+      "message": "Entity \"tb_buyer_orders\" attribute 4 \"fulfillment_status\" needs 625px of text but only 539px is available — For this attribute row's text capacity, set entities[0].width to at least 679px, preserving the attribute name, type and key roles.",
+      "subject": {
+        "diagramType": "erd",
+        "entityId": "tb_buyer_orders",
+        "attributeIndex": 4,
+        "attributeName": "fulfillment_status"
+      },
+      "evidence": {
+        "entityWidth": 593,
+        "requiredEntityWidth": 679,
+        "availableTextWidth": 539,
+        "requiredTextWidth": 624.5,
+        "paddingWidth": 24,
+        "keyColumnWidth": 30,
+        "nameFontSize": 11,
+        "typeFontSize": 10.5
+      },
+      "supportedFixes": [
+        "For this attribute row's text capacity, set entities[0].width to at least 679px, preserving the attribute name, type and key roles."
+      ]
+    },
+    {
+      "code": "layout/constraint",
+      "severity": "error",
+      "message": "Relationship 19 id \"fk_superior_category\" connects entity \"tbc_categories\" to itself — draw it between two entities or describe the self-reference in a card.",
+      "subject": {
+        "diagramType": "erd"
+      }
+    },
+    {
+      "code": "clean-flow/edge-through-node",
+      "severity": "error",
+      "message": "[clean-flow/edge-through-node] erd relationships[12] id \"fk_refunds_return\" \"tb_refunds\" -> \"tb_returns\" crosses entity \"tb_people\" (unrelated to this relationship) on segment 1 [2072, 1206] -> [2072, 532] (2px clearance) — adjust fromSide/toSide, set route/via, or move the entity.",
+      "subject": {
+        "diagramType": "erd",
+        "collection": "relationships",
+        "index": 12,
+        "id": "fk_refunds_return",
+        "from": "tb_refunds",
+        "to": "tb_returns"
+      },
+      "evidence": {
+        "obstacleKind": "entity",
+        "obstacleId": "tb_people",
+        "segmentIndex": 1,
+        "from": [
+          2071.5,
+          1206
+        ],
+        "to": [
+          2071.5,
+          532
+        ],
+        "clearancePx": 2
+      },
+      "supportedFixes": [
+        "adjust fromSide/toSide, set route/via, or move the entity"
+      ]
+    },
+    {
+      "code": "clean-flow/edge-through-node",
+      "severity": "error",
+      "message": "[clean-flow/edge-through-node] erd relationships[22] id \"fk_cancellation_items_cancellation\" \"tbd_cancellation_items\" -> \"tb_cancellations\" crosses entity \"tb_returns\" (unrelated to this relationship) on segment 0 [1286, 1388] -> [1286, 296] (2px clearance) — adjust fromSide/toSide, set route/via, or move the entity.",
+      "subject": {
+        "diagramType": "erd",
+        "collection": "relationships",
+        "index": 22,
+        "id": "fk_cancellation_items_cancellation",
+        "from": "tbd_cancellation_items",
+        "to": "tb_cancellations"
+      },
+      "evidence": {
+        "obstacleKind": "entity",
+        "obstacleId": "tb_returns",
+        "segmentIndex": 0,
+        "from": [
+          1286,
+          1388
+        ],
+        "to": [
+          1286,
+          296
+        ],
+        "clearancePx": 2
+      },
+      "supportedFixes": [
+        "adjust fromSide/toSide, set route/via, or move the entity"
+      ]
+    },
+    {
+      "code": "clean-flow/edge-through-node",
+      "severity": "error",
+      "message": "[clean-flow/edge-through-node] erd relationships[24] id \"tbd_carts_items_ibfk_1\" \"tbd_carts_items\" -> \"tb_carts\" crosses entity \"tb_shipments\" (unrelated to this relationship) on segment 0 [329, 1026] -> [329, 498] (2px clearance) — adjust fromSide/toSide, set route/via, or move the entity.",
+      "subject": {
+        "diagramType": "erd",
+        "collection": "relationships",
+        "index": 24,
+        "id": "tbd_carts_items_ibfk_1",
+        "from": "tbd_carts_items",
+        "to": "tb_carts"
+      },
+      "evidence": {
+        "obstacleKind": "entity",
+        "obstacleId": "tb_shipments",
+        "segmentIndex": 0,
+        "from": [
+          328.5,
+          1026
+        ],
+        "to": [
+          328.5,
+          498
+        ],
+        "clearancePx": 2
+      },
+      "supportedFixes": [
+        "adjust fromSide/toSide, set route/via, or move the entity"
+      ]
+    },
+    {
+      "code": "clean-flow/edge-through-node",
+      "severity": "error",
+      "message": "[clean-flow/edge-through-node] erd relationships[25] id \"tbd_carts_items_ibfk_2\" \"tbd_carts_items\" -> \"tbd_products_users_providers\" crosses entity \"tbd_address_components\" (unrelated to this relationship) on segment 0 [509, 1082] -> [1836, 1082] (2px clearance) — adjust fromSide/toSide, set route/via, or move the entity.",
+      "subject": {
+        "diagramType": "erd",
+        "collection": "relationships",
+        "index": 25,
+        "id": "tbd_carts_items_ibfk_2",
+        "from": "tbd_carts_items",
+        "to": "tbd_products_users_providers"
+      },
+      "evidence": {
+        "obstacleKind": "entity",
+        "obstacleId": "tbd_address_components",
+        "segmentIndex": 0,
+        "from": [
+          508.5,
+          1082
+        ],
+        "to": [
+          1836.25,
+          1082
+        ],
+        "clearancePx": 2
+      },
+      "supportedFixes": [
+        "adjust fromSide/toSide, set route/via, or move the entity"
+      ]
+    },
+    {
+      "code": "clean-flow/edge-through-node",
+      "severity": "error",
+      "message": "[clean-flow/edge-through-node] erd relationships[26] id \"tbd_carts_items_ibfk_3\" \"tbd_carts_items\" -> \"tbd_products_users_providers\" crosses entity \"tbd_address_components\" (unrelated to this relationship) on segment 0 [509, 1106] -> [1836, 1106] (2px clearance) — adjust fromSide/toSide, set route/via, or move the entity.",
+      "subject": {
+        "diagramType": "erd",
+        "collection": "relationships",
+        "index": 26,
+        "id": "tbd_carts_items_ibfk_3",
+        "from": "tbd_carts_items",
+        "to": "tbd_products_users_providers"
+      },
+      "evidence": {
+        "obstacleKind": "entity",
+        "obstacleId": "tbd_address_components",
+        "segmentIndex": 0,
+        "from": [
+          508.5,
+          1106
+        ],
+        "to": [
+          1836.25,
+          1106
+        ],
+        "clearancePx": 2
+      },
+      "supportedFixes": [
+        "adjust fromSide/toSide, set route/via, or move the entity"
+      ]
+    }
+  ],
+  "diagnosticSummary": {
+    "total": 31,
+    "shown": 8,
+    "truncated": true,
+    "omittedByCode": {
+      "clean-flow/edge-through-node": 11,
+      "erd/attribute-text-capacity": 11,
+      "layout/constraint": 1
+    }
+  },
+  "evidence": {
+    "receipt": "C:\\Users\\obedv\\Documents\\practicas_BDN_240145\\.archify\\respaldo5-diccionario-20261022-080200\\review-update-1\\relaciones-respaldo5.finalize.json",
+    "summaryReceipt": "C:\\Users\\obedv\\Documents\\practicas_BDN_240145\\.archify\\respaldo5-diccionario-20261022-080200\\review-update-1\\relaciones-respaldo5.finalize-summary.json"
+  },
+  "visualReview": "not-requested",
+  "durationMs": 590,
+  "browserCheck": {
+    "requested": true,
+    "ran": false
+  },
+  "nextAction": {
+    "action": "edit-in-place",
+    "candidate": "C:\\Users\\obedv\\Documents\\practicas_BDN_240145\\.archify\\respaldo5-diccionario-20261022-080200\\candidate.json",
+    "constraint": "Preserve unaffected semantics and geometry; apply each diagnostic's supportedFixes, or the fix its message names, and do not replace the whole candidate.",
+    "then": "finalize-once"
+  }
+}

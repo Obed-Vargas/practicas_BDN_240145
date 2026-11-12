@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "command": "deliver",
+  "status": "pending",
+  "receiptId": "67787e44-d543-4717-a5a1-72705fa57133",
+  "input": "C:\\Users\\obedv\\Documents\\practicas_BDN_240145\\.archify\\respaldo5-diccionario-20261022-080200\\candidate.json",
+  "output": "C:\\Users\\obedv\\Documents\\practicas_BDN_240145\\.archify\\respaldo5-diccionario-20261022-080200\\relaciones-respaldo5.html"
+}
