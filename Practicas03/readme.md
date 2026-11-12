@@ -2,7 +2,11 @@
 
 ## Enlaces de git pages
 diccionario de datos: https://obed-vargas.github.io/practicas_BDN_240145/Practicas03/ 
+
 diagrama entidad-relacion: https://obed-vargas.github.io/practicas_BDN_240145/Practicas03/relaciones-respaldo5.html
+
+---
+
 ## Descripción General
 
 En esta práctica se consolidó y expandió la arquitectura de la base de datos relacional **`db_test_7b`** alojada en un servidor remoto MySQL 8.0, simulando una plataforma integral de **Comercio Electrónico (E-Commerce)** a gran escala.
