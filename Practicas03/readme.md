@@ -128,8 +128,8 @@ Se implementaron **26 vistas de base de datos** para abstraer y consultar la bit
 - Con la última carga masiva se alcanzó la meta fijada por el docente de **7,007 productos** registrados en `tb_products`.
 
 ### 3. Categorías y Categorizaciones
-- **Catálogo de Categorías**: Se importaron y configuraron 20 categorías comerciales de E-Commerce en `tbc_categories` con jerarquías principales y secundarias.
-- **Categorización Multi-Categoría**: Se asignaron múltiples categorías por producto en `tbd_products_categories`, permitiendo que un mismo artículo se encuentre clasificado en dos o más ramas de venta simultáneamente. Con esto se superó ampliamente la meta docente de al menos 13,000, alcanzando **más de 16,500 categorizaciones**.
+- **Catálogo de Categorías**: Se importaron y configuraron 100 categorías comerciales de E-Commerce en `tbc_categories` con jerarquías principales y secundarias.
+- **Categorización Multi-Categoría**: Se asignaron múltiples categorías por producto en `tbd_products_categories`, permitiendo que un mismo artículo se encuentre clasificado en dos o más ramas de venta simultáneamente. Con esto se superó ampliamente la meta docente de al menos 13,000, alcanzando **15,771 categorizaciones** según `Dump1111.sql`.
 
 ---
 
@@ -202,8 +202,8 @@ Practicas03/
 | **Total de Usuarios (`tb_users`)** | ~10,000 usuarios | **22,510 usuarios** | 🟢 Cumplido |
 | **Total de Personas (`tb_people`)** | ~10,000 personas | **22,503 personas** | 🟢 Cumplido |
 | **Total de Productos (`tb_products`)** | ~7,000 productos | **7,007 productos** | 🟢 Cumplido |
-| **Catálogo de Categorías (`tbc_categories`)** | Catálogo definido | **20 categorías** | 🟢 Cumplido |
-| **Categorizaciones (`tbd_products_categories`)** | Al menos 13,000 | **16,518 categorizaciones** | 🟢 Cumplido |
+| **Catálogo de Categorías (`tbc_categories`)** | Catálogo definido | **100 categorías** | 🟢 Cumplido |
+| **Categorizaciones (`tbd_products_categories`)** | Al menos 13,000 | **15,771 categorizaciones** | 🟢 Cumplido |
 | **Diccionario y Diagrama ER** | Documentación completa | **Markdown, CSV, Mermaid, HTML** | 🟢 Cumplido |
 | **Respaldo Final Completo** | Respaldo SQL | **`Dump1111.sql` (27.6 MB)** | 🟢 Cumplido |
 
@@ -212,4 +212,3 @@ Practicas03/
 ## Estatus de la Práctica
 
 🟢 **Completada y Verificada**
-
