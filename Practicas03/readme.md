@@ -1,9 +1,9 @@
 # Práctica 03 - Manipulación de Datos en Conexiones Remotas a Bases de Datos Relacionales
 
 ## Enlaces de git pages
-diccionario de datos: https://obed-vargas.github.io/practicas_BDN_240145/Practicas03/ 
+Diccionario de datos: https://obed-vargas.github.io/practicas_BDN_240145/Practicas03/
 
-diagrama entidad-relacion: https://obed-vargas.github.io/practicas_BDN_240145/Practicas03/relaciones-respaldo5.html
+Diagrama entidad-relación: https://obed-vargas.github.io/practicas_BDN_240145/Practicas03/relaciones-respaldo5.html
 
 ---
 
