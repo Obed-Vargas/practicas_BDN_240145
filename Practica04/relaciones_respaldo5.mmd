@@ -1,0 +1,318 @@
+erDiagram
+    tb_buyer_orders {
+        int ID PK
+        int seller_ID FK
+        decimal_12_2 subtotal
+        decimal_12_2 shipping_cost
+        enum_Pending_Accepted_Preparing_Sent_Delivered_Canceled_Returned fulfillment_status
+        bit_1 status
+        datetime creation_date
+        datetime last_update
+    }
+    tb_cancellations {
+        int ID PK
+        int buyer_order_ID FK
+        int user_ID FK
+        varchar_500 cancellation_reason
+        enum_Requested_Approved_Rejected_Completed cancellation_status
+        datetime requested_date
+        datetime resolved_date
+        text resolution_notes
+        bit_1 status
+        datetime creation_date
+        datetime last_update
+    }
+    tb_carts {
+        int ID PK
+        int user_ID UK FK
+        bit_1 status
+        datetime creation_date
+        datetime last_update
+    }
+    tb_logs {
+        int ID PK
+        varchar_80 table_name
+        enum_Create_Read_Update_Delete table_operation
+        varchar_80 db_users
+        datetime operation_date
+        text table_description
+        bit_1 operation_status
+    }
+    tb_payment_methods {
+        int ID PK
+        int buyer_order_ID FK
+        int user_ID FK
+        int payment_method_type_ID FK
+        varchar_150 payment_reference
+        decimal_12_2 amount
+        char_3 currency
+        enum_Pending_Authorized_Paid_Failed_Cancelled_Refunded payment_status
+        datetime payment_date
+        text notes
+        bit_1 status
+        datetime creation_date
+        datetime last_update
+    }
+    tb_payment_transactions {
+        int ID PK
+        int payment_ID FK
+        enum_Created_Authorized_Captured_Failed_Refunded_PartiallyRefunded event_type
+        decimal_12_2 amount
+        varchar_150 event_reference
+        text remarks
+        datetime creation_date
+    }
+    tb_payments {
+        int ID PK
+        int buyer_order_ID FK
+        decimal_12_2 amount
+        char_3 currency
+        enum_Card_SPEI_Transfer_Cash payment_method
+        varchar_50 provider UK
+        varchar_150 provider_reference UK
+        enum_Pending_Authorized_Paid_Failed_Refunded_PartiallyRefunded payment_status
+        datetime creation_date
+        datetime paid_date
+        datetime last_update
+    }
+    tb_people {
+        bigint person_ID PK
+        int user_ID UK FK
+        varchar_50 courtesy_title
+        varchar_150 given_names
+        varchar_150 family_names
+        date birth_date
+        enum_hombre_mujer_Prefiero_no_decirlo gender
+        char_2 country_code
+        varchar_25 phone
+        bit_1 status
+        datetime creation_date
+        datetime last_update
+    }
+    tb_products {
+        int ID PK
+        varchar_50 SKU UK
+        varchar_250 name
+        text description
+        decimal_10_2 current_price
+        int current_stock
+        bit_1 status
+        datetime creation_date
+        datetime last_update
+    }
+    tb_refunds {
+        int ID PK
+        int payment_ID FK
+        int cancellation_ID FK
+        int return_ID FK
+        decimal_12_2 amount
+        char_3 currency
+        varchar_500 refund_reason
+        enum_Requested_Approved_Processing_Completed_Rejected_Failed refund_status
+        varchar_150 provider_reference
+        datetime requested_date
+        datetime processed_date
+        text resolution_notes
+        bit_1 status
+        datetime creation_date
+        datetime last_update
+    }
+    tb_returns {
+        int ID PK
+        int buyer_order_ID FK
+        int order_item_ID FK
+        int user_ID FK
+        int quantity
+        varchar_500 return_reason
+        enum_Requested_Authorized_Rejected_InTransit_Received_Inspected_Completed return_status
+        datetime requested_date
+        datetime received_date
+        datetime resolved_date
+        text resolution_notes
+        bit_1 status
+        datetime creation_date
+        datetime last_update
+    }
+    tb_shipments {
+        int ID PK
+        int buyer_order_ID FK
+        bigint address_ID FK
+        varchar_100 carrier UK
+        varchar_150 tracking_number UK
+        decimal_12_2 shipping_cost
+        enum_Pending_Preparing_Shipped_InTransit_Delivered_Failed_Returned shipment_status
+        datetime shipped_date
+        datetime estimated_delivery_date
+        datetime delivered_date
+        bit_1 status
+        datetime creation_date
+        datetime last_update
+    }
+    tb_user_addresses {
+        bigint ID PK
+        int user_ID FK
+        varchar_100 address_label
+        varchar_150 recipient_name
+        varchar_25 recipient_phone
+        varchar_500 delivery_instructions
+        decimal_10_7 latitude
+        decimal_10_7 longitude
+        bit_1 is_default
+        bit_1 status
+        datetime creation_date
+        datetime last_update
+    }
+    tb_users {
+        int ID PK
+        varchar_100 email UK
+        varchar_50 nick UK
+        varchar_255 password
+        datetime creation_date
+        datetime last_update
+        datetime last_login
+        bit_1 status
+    }
+    tbc_categories {
+        int ID PK
+        varchar_120 name UK
+        text description
+        int sup_id_category FK
+        bit_1 status
+        datetime creation_date
+        datetime last_update
+    }
+    tbc_payment_methods_types {
+        int ID PK
+        varchar_30 code UK
+        text description
+        bit_1 status
+        datetime creation_date
+        datetime last_update
+    }
+    tbd_address_components {
+        bigint ID PK UK
+        bigint address_ID UK FK
+        varchar_255 value
+        varchar_50 component_type
+        bit_1 status
+        bigint address_sup_id FK
+        datetime creation_date
+        datetime last_update
+    }
+    tbd_cancellation_items {
+        int ID PK
+        int cancellation_ID FK
+        int order_item_ID FK
+        int quantity
+        decimal_12_2 unit_amount
+        varchar_500 item_reason
+        bit_1 status
+        datetime creation_date
+        datetime last_update
+    }
+    tbd_carts_items {
+        int cart_ID PK FK
+        int provider_ID PK FK
+        int product_ID PK FK
+        int quantity
+        datetime creation_date
+    }
+    tbd_order_items {
+        int ID PK
+        int seller_order_ID FK
+        int product_ID FK
+        int provider_ID FK
+        varchar_255 product_name
+        int quantity
+        decimal_12_2 unit_price
+        decimal_12_2 subtotal
+        datetime creation_date
+    }
+    tbd_products_categories {
+        int category_ID PK FK
+        int product_ID PK FK
+        bit_1 status
+        datetime creation_date
+        datetime last_update
+    }
+    tbd_products_users_providers {
+        int user_ID PK FK
+        int product_ID PK FK
+        enum_Owner_Reseller_Distributor type_ownership
+        bit_1 status
+        datetime avalaible_date
+        datetime creation_date
+        datetime last_update
+    }
+    tbd_return_items {
+        int ID PK
+        int return_ID FK
+        int order_item_ID FK
+        int quantity
+        decimal_12_2 unit_amount
+        varchar_500 item_reason
+        enum_Unknown_New_Opened_Damaged item_condition
+        bit_1 status
+        datetime creation_date
+        datetime last_update
+    }
+    tbd_user_payment_methods {
+        bigint ID PK
+        int user_ID FK
+        int payment_method_type_ID FK
+        varchar_50 provider UK
+        varchar_255 provider_method_ref UK
+        varchar_100 label
+        char_4 last_four
+        tinyint_1 is_default
+        bit_1 status
+        datetime creation_date
+        datetime last_update
+    }
+    tbd_users_wishlist_products {
+        int user_ID PK FK
+        int product_ID PK FK
+        bit_1 status
+        datetime creation_date
+        datetime last_update
+    }
+    tb_users ||--o{ tb_buyer_orders : "tb_buyer_orders_ibfk_1"
+    tb_buyer_orders ||--o{ tb_cancellations : "fk_cancellations_order"
+    tb_users ||--o{ tb_cancellations : "fk_cancellations_user"
+    tb_users ||--o{ tb_carts : "fk_carts_user"
+    tb_buyer_orders ||--o{ tb_payment_methods : "fk_payment_methods_order"
+    tbc_payment_methods_types ||--o{ tb_payment_methods : "fk_payment_methods_type"
+    tb_users ||--o{ tb_payment_methods : "fk_payment_methods_user"
+    tb_payments ||--o{ tb_payment_transactions : "fk_transactions_payments"
+    tb_buyer_orders ||--o{ tb_payments : "fk_payments_buyer_orders"
+    tb_users ||--o{ tb_people : "fk_people_users"
+    tb_cancellations ||--o{ tb_refunds : "fk_refunds_cancellation"
+    tb_payments ||--o{ tb_refunds : "fk_refunds_payment"
+    tb_returns ||--o{ tb_refunds : "fk_refunds_return"
+    tbd_order_items ||--o{ tb_returns : "fk_returns_item"
+    tb_buyer_orders ||--o{ tb_returns : "fk_returns_order"
+    tb_users ||--o{ tb_returns : "fk_returns_user"
+    tb_user_addresses ||--o{ tb_shipments : "fk_shipments_address"
+    tb_buyer_orders ||--o{ tb_shipments : "fk_shipments_order"
+    tb_users ||--o{ tb_user_addresses : "fk_addresses_users"
+    tbc_categories ||--o{ tbc_categories : "fk_superior_category"
+    tb_user_addresses ||--o{ tbd_address_components : "fk_component_address"
+    tbd_address_components ||--o{ tbd_address_components : "fk_component_parent"
+    tb_cancellations ||--o{ tbd_cancellation_items : "fk_cancellation_items_cancellation"
+    tbd_order_items ||--o{ tbd_cancellation_items : "fk_cancellation_items_order_item"
+    tb_carts ||--o{ tbd_carts_items : "tbd_carts_items_ibfk_1"
+    tbd_products_users_providers ||--o{ tbd_carts_items : "tbd_carts_items_ibfk_2"
+    tbd_products_users_providers ||--o{ tbd_carts_items : "tbd_carts_items_ibfk_3"
+    tb_buyer_orders ||--o{ tbd_order_items : "tbd_order_items_ibfk_1"
+    tbd_products_users_providers ||--o{ tbd_order_items : "tbd_order_items_ibfk_2"
+    tbd_products_users_providers ||--o{ tbd_order_items : "tbd_order_items_ibfk_3"
+    tbc_categories ||--o{ tbd_products_categories : "fk_category_prod"
+    tb_products ||--o{ tbd_products_categories : "fk_product_cat"
+    tb_products ||--o{ tbd_products_users_providers : "fk_products2"
+    tb_users ||--o{ tbd_products_users_providers : "fk_user1"
+    tbd_order_items ||--o{ tbd_return_items : "fk_return_items_order_item"
+    tb_returns ||--o{ tbd_return_items : "fk_return_items_return"
+    tb_users ||--o{ tbd_user_payment_methods : "tbd_user_payment_methods_ibfk_1"
+    tbc_payment_methods_types ||--o{ tbd_user_payment_methods : "tbd_user_payment_methods_ibfk_2"
+    tb_products ||--o{ tbd_users_wishlist_products : "fk_products3"
+    tb_users ||--o{ tbd_users_wishlist_products : "fk_user2"
